@@ -124,6 +124,28 @@ public class DataEntry {
 		}
     	return isUnique;
     }
+    /***
+     * @author Josip Bošnjak
+     * @since 21.5.2019 18:51
+     * @param list sex list
+     * @param list2 country list
+     * 
+     * <h2>Description</h2>
+     * <strong>
+     * This function creates a migration file, 
+     * insert data to table with insertion queries from sex and country table 
+     * and it checks if there is the same file name. If it is, then
+     * it will change version to next number everything else will remain the same.
+     * <strong>
+     */
+    public static void makeScript(List<String> list, List<String> list2) {
+    	int version=2;
+    	String filename="__dataEntry.sql";
+    	String file="V"+String.valueOf(version)+filename;
+    	System.out.println(file);
+    	String query1="";
+    	String query2="";
+    }
 	public static void main(String[] args) {
 	 
 		final int generate=5;
@@ -131,8 +153,8 @@ public class DataEntry {
         printList(generateList);
         List<String> countries=generateCountries();
         printList(countries);
-	   
-	   
+	    makeScript(generateList, countries);
+	    
 	   
 	  
 
