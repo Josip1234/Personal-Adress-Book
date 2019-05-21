@@ -1,5 +1,8 @@
 package com.josip.personal.adress.book;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -139,12 +142,42 @@ public class DataEntry {
      * <strong>
      */
     public static void makeScript(List<String> list, List<String> list2) {
-    	int version=2;
+    	double version=2;
     	String filename="__dataEntry.sql";
     	String file="V"+String.valueOf(version)+filename;
     	System.out.println(file);
-    	String query1="";
-    	String query2="";
+    	String query="";
+    	
+    	for (String string : list) {
+			query="INSERT INTO sex(name) VALUES("+string+")";
+		}
+    	for (String string : list2) {
+    		query="INSERT INTO country(name,alpha_2,alpha_3) VALUES("+string+")";
+		}
+    	
+    	String location="src/main/resources/db/migration/";
+        saveToFile(location, file,query);
+    }
+    /***
+     * 
+     * @param location
+     * @param file
+     * <h2>Description</h2>
+     * <strong>
+     * This function saves values  into the migrate file.
+     * </strong>
+     */
+    public static void saveToFile(String location,String file, String query) {
+
+		  try {
+          PrintWriter printWriter=new PrintWriter(new FileOutputStream(location+file,true));
+          printWriter.println(query);
+          printWriter.close();
+
+
+  } catch (FileNotFoundException e) {
+      e.printStackTrace();
+  } 
     }
 	public static void main(String[] args) {
 	 
