@@ -18,7 +18,9 @@ import java.util.Random;
  * inserts data into database. Also it checks if migration file name already exists.
  * If it exists, it will change random version of that file by adding one to the version.
  * If that version e too, it will add until there is available. Also, 
- * it contains functions which generates random data.
+ * it contains functions which generates random data. This test class only generates 
+ * values for sex and country, since we have foreign keys and also we cannot make
+ * a list of cities. It will have to be inserted manually.
  */
 
 public class DataEntry {
@@ -68,11 +70,67 @@ public class DataEntry {
 			System.out.println(string);
 		}
     }
+    
+    /***
+     * @author Josip Bošnjak
+     * @since 21.5.2019 17:50
+     * @return list of countries
+     * <h2>Description</h2>
+     * <strong>
+     *  This function generate list of countries in the array.
+     *  Also we need unique country names, so it will have at least 20 
+     *  countries, and we will need only ten because of data. So we will have another
+     *  function which will check for the unique values. Functionality 
+     *  of this function is equals to generateSex, but also it will have
+     *  call to check the list if there is unique value. Also it generates their country
+     *  alpha1 and alpha2 codes.
+     * </strong>
+     */
+    public static List<String> generateCountries(){
+    	List<String> country=new ArrayList<String>();
+    	String countries[]=new String[] {"Japan","South Korea","Croatia","Afganistan","Syria","United states of america","Norway","Peru","Mexico","Venezuela","China","Saudi Arabia","Qatar","Italy","Germany","Slovenia","Serbia","Russia","Ucraine","Belarus"};
+    	String alpha1[] = new String[] {"JP","KR","HR","AF","SY","US","NO","PE","MX","VE","CN","SA","QA","IT","DE","SI","RS","RU","UA","BY"};
+    	String alpha2[] = new String[] {"JPN","KOR","HRV","AFG","SYR","USA","NOR","PER","MEX","VEN","CHN","SAU","QAT","ITA","DEU","SVN","SRB","RUS","UKR","BLR"};
+    	Random random=new Random();
+    	for(int number=0;number<countries.length;number++) {
+    		int index=random.nextInt(countries.length);
+    		if(checkUnique(country, countries[index])==true) {
+    			
+    		
+    		country.add(countries[index]);
+    		country.add(alpha1[index]);
+    		country.add(alpha2[index]);
+    		country.add(",");
+    		}else {
+    			continue;
+    		}
+    	}
+    	return country;
+    }
+    /**
+     * 
+     * @param list
+     * @return true if unique value else return false
+     */
+    public static boolean checkUnique(List<String> list, String value) {
+    	boolean isUnique=true;
+    	for (String string : list) {
+			if (string.equals(value)) {
+				isUnique=false;
+				break;
+			}else {
+				isUnique=true;
+			}
+		}
+    	return isUnique;
+    }
 	public static void main(String[] args) {
 	 
 		final int generate=5;
 		List<String> generateList=generateSex(generate);
         printList(generateList);
+        List<String> countries=generateCountries();
+        printList(countries);
 	   
 	   
 	   
