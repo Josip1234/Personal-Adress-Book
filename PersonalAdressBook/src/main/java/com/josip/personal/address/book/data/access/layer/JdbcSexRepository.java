@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.josip.personal.address.book.presentation.layer.Sex;
 
@@ -29,7 +30,7 @@ import lombok.Data;
  *  </strong>
  *
  */
-@Data
+@Repository
 public class JdbcSexRepository implements SexRepository {
 
 	private JdbcTemplate jdbc;

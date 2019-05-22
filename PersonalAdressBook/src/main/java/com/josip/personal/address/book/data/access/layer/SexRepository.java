@@ -1,5 +1,7 @@
 package com.josip.personal.address.book.data.access.layer;
 
+import org.springframework.stereotype.Repository;
+
 import com.josip.personal.address.book.presentation.layer.Sex;
 
 /**
@@ -15,6 +17,7 @@ import com.josip.personal.address.book.presentation.layer.Sex;
  * </strong>
  *
  */
+
 public interface SexRepository {
 	/**
 	 * @author Josip Bošnjak
