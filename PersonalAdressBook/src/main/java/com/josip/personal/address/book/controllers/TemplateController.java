@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.josip.personal.address.book.data.access.layer.SexRepository;
 
 @Controller
-@RequestMapping(value= {"/","/template"})
 public class TemplateController {
 
 	private final SexRepository sexRepository;
@@ -21,7 +20,9 @@ public class TemplateController {
 		this.sexRepository=sexRepository;
 	}
 	
-	@RequestMapping(value="/template",method=RequestMethod.GET)
-	public String template() {
+	@RequestMapping(value="/")
+	public String getTemplate() {
 		return "template";
-	}}
+	}
+	
+}
