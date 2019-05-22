@@ -23,6 +23,11 @@ public class TemplateController {
 		this.sexRepository=sexRepository;
 	}
 	
+	 @GetMapping({"/", "/test"})
+	    public String test() {
+	        
+	        return "test";
+	    }
 
 	
 }
