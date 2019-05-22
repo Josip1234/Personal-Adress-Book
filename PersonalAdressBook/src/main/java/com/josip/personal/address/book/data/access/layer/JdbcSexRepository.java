@@ -50,4 +50,12 @@ public class JdbcSexRepository implements SexRepository {
 		return new Sex(rs.getLong("id"),
 				rs.getString("name"));
 	}
+
+	@Override
+	public Sex save(Sex sex) {
+		jdbc.update(
+				"INSERT INTO sex(name) VALUES (?)", 
+				sex.getName());
+		return sex;
+	}
 }
