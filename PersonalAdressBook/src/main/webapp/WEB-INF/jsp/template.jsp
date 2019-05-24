@@ -16,24 +16,25 @@
 <div class="col-sm-4">
 <div class="table-responsive-sm">
 <h2>List of sex avaiable in data source:</h2>
-<table class="table table-bordered table-sm">
+<table class="table table-hover  table-sm">
   <thead>
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Name</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">1</th>
       <td>Male</td>
- 
+      <td><button type="button" class="btn btn-sm btn-outline-success">Add</button></td>
+      <td><button type="button" class="btn btn-sm btn-outline-primary">Update</button></td>
+      <td><button type="button" class="btn btn-sm btn-outline-danger">Delete</button></td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Female</td>
-     
-    </tr>
+    
    
   </tbody>
 </table>
