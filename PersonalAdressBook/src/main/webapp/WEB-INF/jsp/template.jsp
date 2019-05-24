@@ -9,13 +9,13 @@
 <body>
 <div class="jumbotron text-center">
   <h1>Personal address book</h1>
-  <p>Remembers your contacts while you alive!!!</p> 
+  <p>Remembers your contacts while you alive!!!</p>
 </div>
 <div class="container">
 <div class="row">
 <div class="col-sm-4">
 <div class="table-responsive-sm">
-<h2>List of sex avaiable in data source:</h2>
+<h2>List of sex:</h2>
 <table class="table table-hover  table-sm">
   <thead>
     <tr>
@@ -36,11 +36,24 @@
       <td><button type="button" class="btn btn-sm btn-outline-danger">Delete</button></td>
     </tr>
     </c:forEach>
-   
+
   </tbody>
 </table>
 
 </div>
+</div>
+
+</div>
+<div class="row">
+  <div class="col-sm-4">
+<h2>Insert new sex:</h2>
+<form action="/template" method="post">
+<div class="form-group">
+ 
+  <input class="form-control form-control-sm" type="text" placeholder="Name">
+</div>
+<button type="submit" class="btn btn-primary">Insert new sex</button>
+</form>
 </div>
 </div>
 </div>
