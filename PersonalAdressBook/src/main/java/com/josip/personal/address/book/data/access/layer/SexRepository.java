@@ -49,4 +49,6 @@ public interface SexRepository {
      * </strong>
      */
     Sex save(Sex sex);
+    void update(Sex sex);
+    void delete(Sex sex);
 }

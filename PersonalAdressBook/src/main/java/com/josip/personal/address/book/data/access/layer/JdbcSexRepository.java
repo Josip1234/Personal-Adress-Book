@@ -59,4 +59,16 @@ public class JdbcSexRepository implements SexRepository {
 				sex.getName());
 		return sex;
 	}
+
+	@Override
+	public void update(Sex sex) {
+	    
+	    jdbc.update("UPDATE sex set name=? where id=?", sex.getName(),sex.getId());
+	
+	}
+
+	@Override
+	public void delete(Sex sex) {
+	    jdbc.update("DELETE id,name FROM sex WHERE id=?",sex.getId());
+	}
 }
