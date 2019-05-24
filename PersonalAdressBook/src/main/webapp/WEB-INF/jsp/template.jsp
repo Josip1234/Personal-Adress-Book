@@ -9,7 +9,7 @@
 <body>
 <div class="jumbotron text-center">
   <h1>Personal address book</h1>
-  <p>Remember your contacts while you alive!!!</p> 
+  <p>Remembers your contacts while you alive!!!</p> 
 </div>
 <div class="container">
 <div class="row">
@@ -27,14 +27,15 @@
     </tr>
   </thead>
   <tbody>
+  <c:forEach items="${sex}" var="sex" >
     <tr>
-      <th scope="row">1</th>
-      <td>Male</td>
+      <th scope="row"><c:out value="${sex.id}"/></th>
+      <td><c:out value="${sex.name}"/></td>
       <td><button type="button" class="btn btn-sm btn-outline-success">Add</button></td>
       <td><button type="button" class="btn btn-sm btn-outline-primary">Update</button></td>
       <td><button type="button" class="btn btn-sm btn-outline-danger">Delete</button></td>
     </tr>
-    
+    </c:forEach>
    
   </tbody>
 </table>

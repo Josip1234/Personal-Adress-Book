@@ -48,7 +48,8 @@ public class TemplateController {
 	    public String template(Model model) {
 	        List<Sex> sex = new ArrayList<>();
 	        sexRepository.findAll().forEach(i->sex.add(i));
-	        model.addAttribute(sex);
+	       
+	        model.addAttribute("sex",sex);
 	        return "template";
 	    }
 
