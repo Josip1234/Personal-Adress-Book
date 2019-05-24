@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.josip.personal.address.book.presentation.layer.Sex;
 
-import lombok.Data;
-
 /***
  * 
  * @author Josip Bošnjak
