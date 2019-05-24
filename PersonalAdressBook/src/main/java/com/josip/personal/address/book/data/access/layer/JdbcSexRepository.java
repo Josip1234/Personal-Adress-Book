@@ -13,7 +13,7 @@ import lombok.Data;
 
 /***
  * 
- * @author Korisnik
+ * @author Josip Bošnjak
  * @version 1.0
  * @since 22.5.2019 9:07
  * 

@@ -49,6 +49,28 @@ public interface SexRepository {
      * </strong>
      */
     Sex save(Sex sex);
+    /***
+     * @author Josip Bošnjak
+     * @since 24.5.2019. 21:10
+     * @param sex
+     * <h2>Description</h2>
+     * <strong>
+     * This function receives sex object as parameter, 
+     * and it uses jdbc update with sql query to update a record 
+     * in database.
+     * </strong>
+     */
     void update(Sex sex);
+    /***
+     * @author Josip Bošnjak
+     * @since 24.5.2019. 21:12
+     * @param sex
+     * <h2>Description</h2>
+     * <strong>
+     * This function receives sex object as parameter, 
+     * and it uses jdbc update with sql query to delete a record 
+     * in database.
+     * </strong>
+     */
     void delete(Sex sex);
 }
