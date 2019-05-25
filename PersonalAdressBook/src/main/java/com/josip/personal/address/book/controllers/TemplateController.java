@@ -71,13 +71,37 @@ public class TemplateController {
 		 sexRepository.save(sex);
 		 return "redirect:/template";
 	 }
-	 
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 25.5.2019 15:00
+	  * @param id
+	  * @param name
+	  * @param model
+	  * @return redirect to template after successfully update of record.
+	  */
 	 @PostMapping("/template/updateSex")
 	 public String updateSex(@RequestParam("id")Long id,@RequestParam("name") String name,Model model) {
          Sex sex=new Sex();
          sex.setId(id);
          sex.setName(name);
          sexRepository.update(sex);
+		 return "redirect:/template";
+	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 25.5.2019 17:16
+	  * @param id 
+	  * @param model
+	  * @return redirect to template site after successfully deletion
+	  * <strong>Since we only need database id, we dont need a name
+	  * as parameter in the function it will delete whole record 
+	  * without name provided.</strong>
+	  */
+	 @PostMapping("/template/deleteSex")
+	 public String deleteSex(@RequestParam("id")Long id, Model model) {
+		 Sex sex=new Sex();
+		 sex.setId(id);
+		 sexRepository.delete(sex);
 		 return "redirect:/template";
 	 }
 	

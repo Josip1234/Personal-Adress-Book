@@ -67,6 +67,6 @@ public class JdbcSexRepository implements SexRepository {
 
 	@Override
 	public void delete(Sex sex) {
-	    jdbc.update("DELETE id,name FROM sex WHERE id=?",sex.getId());
+	    jdbc.update("DELETE  FROM sex WHERE id=?",sex.getId());
 	}
 }

@@ -18,24 +18,19 @@
 <div class="col-sm-4">
 <div class="table-responsive-sm">
 <h2>List of sex:</h2>
-<table class="table table-hover  table-sm">
+<table class="table table-hover  table-sm table-bordered">
   <thead>
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Name</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
   <c:forEach items="${se}" var="se" >
     <tr>
-      <th scope="row"><c:out value="${se.id}"/></th>
-      <td><c:out value="${se.name}"/></td>
-      <td><button onclick="addNewSex()" type="button" class="btn btn-sm btn-outline-success">Add</button></td>
-      <td><button onclick="updateSex()" type="button" class="btn btn-sm btn-outline-primary">Update</button></td>
-      <td><button  type="button" class="btn btn-sm btn-outline-danger">Delete</button></td>
+      <th  scope="row"><c:out value="${se.id}"/></th>
+      <td ><c:out value="${se.name}"/></td>
+
     </tr>
     </c:forEach>
 
@@ -43,8 +38,14 @@
 </table>
 
 </div>
-</div>
 
+</div>
+<div class="col-sm-4">
+  <h2>Operations:</h2>
+<button onclick="addNewSex()" type="button" class="btn btn-lg btn-block btn-outline-success">Add sex</button>
+<button onclick="updateSex()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update sex</button>
+<button onclick="deleteSex()" type="button" class="btn btn-lg btn-block btn-outline-danger">Delete sex</button>
+</div>
 </div>
 <div class="row">
   <div id="insertSex" class="col-sm-4">
@@ -62,11 +63,36 @@
   <h2>Update sex:</h2>
   <sf:form method="post" modelAttribute="sex" action="/template/updateSex">
   <div class="form-group">
-    <sf:input path="id" class="form-control form-control-sm" />
-    <sf:input path="name" class="form-control form-control-sm" />
+    <sf:select path="id" class="form-control form-control-sm">
+    <c:forEach items="${se}" var="se" >
+
+        <sf:option value="${se.id}">${se.name}</sf:option>
+
+
+    </c:forEach>
+  </sf:select>
+    <sf:input path="name" class="form-control form-control-sm" placeholder="New name"  />
   </div>
   <button type="submit" class="btn btn-primary">Update</button>
   <button  type="button" class="btn btn-danger" onclick="abort()">Abort update</button>
+  </sf:form>
+</div>
+<div id="deleteSex" class="col-sm-4">
+  <h2>Delete sex:</h2>
+  <sf:form method="post" modelAttribute="sex" action="/template/deleteSex">
+  <div class="form-group">
+    <sf:select path="id" class="form-control form-control-sm">
+    <c:forEach items="${se}" var="se" >
+
+        <sf:option value="${se.id}">${se.name}</sf:option>
+
+
+    </c:forEach>
+  </sf:select>
+
+  </div>
+  <button type="submit" class="btn btn-danger">Delete sex</button>
+  <button  type="button" class="btn btn-danger" onclick="abort()">Abort deletion</button>
   </sf:form>
 </div>
 </div>
