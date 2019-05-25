@@ -71,5 +71,14 @@ public class TemplateController {
 		 sexRepository.save(sex);
 		 return "redirect:/template";
 	 }
+	 
+	 @PostMapping("/template/updateSex")
+	 public String updateSex(@RequestParam("id")Long id,@RequestParam("name") String name,Model model) {
+         Sex sex=new Sex();
+         sex.setId(id);
+         sex.setName(name);
+         sexRepository.update(sex);
+		 return "redirect:/template";
+	 }
 	
 }

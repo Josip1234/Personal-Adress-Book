@@ -62,7 +62,7 @@ public class JdbcSexRepository implements SexRepository {
 	public void update(Sex sex) {
 	    
 	    jdbc.update("UPDATE sex set name=? where id=?", sex.getName(),sex.getId());
-	
+	   
 	}
 
 	@Override

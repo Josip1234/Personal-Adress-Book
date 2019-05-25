@@ -62,8 +62,8 @@
   <h2>Update sex:</h2>
   <sf:form method="post" modelAttribute="sex" action="/template/updateSex">
   <div class="form-group">
-
-    <sf:input path="name" class="form-control form-control-sm" value="${sex.name}" />
+    <sf:input path="id" class="form-control form-control-sm" />
+    <sf:input path="name" class="form-control form-control-sm" />
   </div>
   <button type="submit" class="btn btn-primary">Update</button>
   <button  type="button" class="btn btn-danger" onclick="abort()">Abort update</button>
