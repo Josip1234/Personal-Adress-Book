@@ -7,17 +7,17 @@ import lombok.NoArgsConstructor;
 /***
  * 
  * @author Josip Bošnjak
- * @since 22.5.2019 8:57
  * @version 1.0
- * <strong>
- * This class represent  type of data, getters and setters.
- * </strong>
+ * @since 25.5.2019 19:35
+ *
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Sex {
+public class Country {
+private Long id;
+private String name;
+private String alpha_2;
+private String alpha_3;
 
-	private Long id;
-	private String name;
 }

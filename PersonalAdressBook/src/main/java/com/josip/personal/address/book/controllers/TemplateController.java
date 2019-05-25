@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.josip.personal.address.book.data.access.layer.CountryRepository;
 import com.josip.personal.address.book.data.access.layer.SexRepository;
+import com.josip.personal.address.book.presentation.layer.Country;
 import com.josip.personal.address.book.presentation.layer.Sex;
 
 /****
@@ -35,17 +37,18 @@ import com.josip.personal.address.book.presentation.layer.Sex;
 public class TemplateController {
 
 	private final SexRepository sexRepository;
-	
+	private final CountryRepository countries;
 	
 	@Autowired
-	public TemplateController(SexRepository sexRepository) {
+	public TemplateController(SexRepository sexRepository, CountryRepository country) {
 		this.sexRepository=sexRepository;
+		this.countries=country;
 	}
 	/***
 	 * @author Josip Bošnjak
 	 * @since 24.5.2019. 14:10
 	 * @param model
-	 * @return view template with generated form for insert new sex
+	 * @return view template with generated form for insert new sex, country
 	 */
 	 @GetMapping({"/", "/template"})
 	    public String template(Model model) {
@@ -54,6 +57,10 @@ public class TemplateController {
 	       
 	        model.addAttribute("se",sex);
 	        model.addAttribute(new Sex());
+	        
+	        List<Country> country = new ArrayList<>();
+	        countries.findAll().forEach(c->country.add(c));
+	        model.addAttribute("countryList",country);
 	        return "template";
 	    }
 

@@ -96,6 +96,36 @@
   </sf:form>
 </div>
 </div>
+<div class="row">
+<div class="col-sm-4">
+<div class="table-responsive-sm">
+<h2>Country list:</h2>
+<table class="table table-hover  table-sm table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Alpha 2</th>
+      <th scope="col">Alpha 3</th>
+    </tr>
+  </thead>
+  <tbody>
+  <c:forEach items="${countryList}" var="country" >
+    <tr>
+      <th  scope="row"><c:out value="${country.id}"/></th>
+      <td ><c:out value="${country.name}"/></td>
+      <td ><c:out value="${country.alpha_2}"/></td>
+      <td ><c:out value="${country.alpha_3}"/></td>
+
+    </tr>
+    </c:forEach>
+
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>
