@@ -8,7 +8,7 @@
 <script src="<c:url value="/resources/bootstrap-4.3.1/js/bootstrap.min.js" />"></script>
 <script src="<c:url value="/resources/js/myjavascript.js" />"></script>
 </head>
-<body>
+<body onload="removeForms()">
 <div class="jumbotron text-center">
   <h1>Personal address book</h1>
   <p>Remembers your contacts while you alive!!!</p>
@@ -33,9 +33,9 @@
     <tr>
       <th scope="row"><c:out value="${se.id}"/></th>
       <td><c:out value="${se.name}"/></td>
-      <td><button id="add" type="button" class="btn btn-sm btn-outline-success">Add</button></td>
-      <td><button id="update" type="button" class="btn btn-sm btn-outline-primary">Update</button></td>
-      <td><button id="delete" type="button" class="btn btn-sm btn-outline-danger">Delete</button></td>
+      <td><button onclick="addNewSex()" type="button" class="btn btn-sm btn-outline-success">Add</button></td>
+      <td><button onclick="updateSex()" type="button" class="btn btn-sm btn-outline-primary">Update</button></td>
+      <td><button  type="button" class="btn btn-sm btn-outline-danger">Delete</button></td>
     </tr>
     </c:forEach>
 
@@ -47,15 +47,27 @@
 
 </div>
 <div class="row">
-  <div class="col-sm-4">
+  <div id="insertSex" class="col-sm-4">
 <h2>Insert new sex:</h2>
 <sf:form method="post" modelAttribute="sex" action="/template/insertSex">
 <div class="form-group">
- 
+
   <sf:input path="name" class="form-control form-control-sm" />
 </div>
 <button type="submit" class="btn btn-primary">Insert new sex</button>
+<button  type="button" onclick="abort()" class="btn btn-danger">Abort inserting</button>
 </sf:form>
+</div>
+<div id="updateSex" class="col-sm-4">
+  <h2>Update sex:</h2>
+  <sf:form method="post" modelAttribute="sex" action="/template/updateSex">
+  <div class="form-group">
+
+    <sf:input path="name" class="form-control form-control-sm" value="${sex.name}" />
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+  <button  type="button" class="btn btn-danger" onclick="abort()">Abort update</button>
+  </sf:form>
 </div>
 </div>
 </div>

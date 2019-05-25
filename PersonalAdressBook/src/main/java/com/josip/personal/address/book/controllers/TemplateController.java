@@ -36,6 +36,7 @@ public class TemplateController {
 
 	private final SexRepository sexRepository;
 	
+	
 	@Autowired
 	public TemplateController(SexRepository sexRepository) {
 		this.sexRepository=sexRepository;
