@@ -2,6 +2,7 @@ package com.josip.personal.address.book.presentation.layer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /***
  * 
@@ -16,6 +17,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Sex {
 
 	private Long id;

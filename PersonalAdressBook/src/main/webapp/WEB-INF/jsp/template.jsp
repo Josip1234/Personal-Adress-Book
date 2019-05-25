@@ -1,10 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <!DOCTYPE HTML>
 <head>
 <title>Personal adress book</title>
 <link rel="stylesheet" href="<c:url value="/resources/bootstrap-4.3.1/css/bootstrap.css" />" >
 <script src="<c:url value="/resources/jquery/jquery-3.4.1.min.js" />"></script>
 <script src="<c:url value="/resources/bootstrap-4.3.1/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/resources/js/myjavascript.js" />"></script>
 </head>
 <body>
 <div class="jumbotron text-center">
@@ -27,13 +29,13 @@
     </tr>
   </thead>
   <tbody>
-  <c:forEach items="${sex}" var="sex" >
+  <c:forEach items="${se}" var="se" >
     <tr>
-      <th scope="row"><c:out value="${sex.id}"/></th>
-      <td><c:out value="${sex.name}"/></td>
-      <td><button type="button" class="btn btn-sm btn-outline-success">Add</button></td>
-      <td><button type="button" class="btn btn-sm btn-outline-primary">Update</button></td>
-      <td><button type="button" class="btn btn-sm btn-outline-danger">Delete</button></td>
+      <th scope="row"><c:out value="${se.id}"/></th>
+      <td><c:out value="${se.name}"/></td>
+      <td><button id="add" type="button" class="btn btn-sm btn-outline-success">Add</button></td>
+      <td><button id="update" type="button" class="btn btn-sm btn-outline-primary">Update</button></td>
+      <td><button id="delete" type="button" class="btn btn-sm btn-outline-danger">Delete</button></td>
     </tr>
     </c:forEach>
 
@@ -47,13 +49,13 @@
 <div class="row">
   <div class="col-sm-4">
 <h2>Insert new sex:</h2>
-<form action="/template" method="post">
+<sf:form method="post" modelAttribute="sex" action="/template/insertSex">
 <div class="form-group">
  
-  <input class="form-control form-control-sm" type="text" placeholder="Name">
+  <sf:input path="name" class="form-control form-control-sm" />
 </div>
 <button type="submit" class="btn btn-primary">Insert new sex</button>
-</form>
+</sf:form>
 </div>
 </div>
 </div>

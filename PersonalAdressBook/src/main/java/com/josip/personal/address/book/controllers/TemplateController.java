@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.josip.personal.address.book.data.access.layer.SexRepository;
 import com.josip.personal.address.book.presentation.layer.Sex;
@@ -26,6 +28,7 @@ import com.josip.personal.address.book.presentation.layer.Sex;
  * List is added to the model then, which controller will
  * pass to the web site. User will see that data at the 
  * site.
+ * 
  * </strong>
  */
 @Controller
@@ -37,15 +40,35 @@ public class TemplateController {
 	public TemplateController(SexRepository sexRepository) {
 		this.sexRepository=sexRepository;
 	}
-	
+	/***
+	 * @author Josip Bošnjak
+	 * @since 24.5.2019. 14:10
+	 * @param model
+	 * @return view template with generated form for insert new sex
+	 */
 	 @GetMapping({"/", "/template"})
 	    public String template(Model model) {
 	        List<Sex> sex = new ArrayList<>();
 	        sexRepository.findAll().forEach(i->sex.add(i));
 	       
-	        model.addAttribute("sex",sex);
+	        model.addAttribute("se",sex);
+	        model.addAttribute(new Sex());
 	        return "template";
 	    }
 
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 25.5.2019 13:46
+	  * @param name sex name
+	  * @param model
+	  * @return redirect link to template since insertSex jsp does not exists
+	  */
+	 @PostMapping("/template/insertSex")
+	 public String insertSex(@RequestParam("name") String name,Model model) {
+		 Sex sex=new Sex();
+		 sex.setName(name);
+		 sexRepository.save(sex);
+		 return "redirect:/template";
+	 }
 	
 }
