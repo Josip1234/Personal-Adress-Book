@@ -146,4 +146,17 @@ public class TemplateController {
 		 countries.update(country);
 		 return "redirect:/template";
 	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 26.5.2019 14:59
+	  * @param id
+	  * @return redirect to template if successfully deleted
+	  */
+	 @PostMapping("/template/deleteCountry")
+	 public String deleteCountry(@RequestParam("id") Long id) {
+		 Country country=new Country();
+		 country.setId(id);
+		 countries.delete(country);
+		 return "redirect:/template";
+	 }
 }

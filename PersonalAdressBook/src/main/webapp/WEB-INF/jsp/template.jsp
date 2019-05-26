@@ -132,7 +132,7 @@
   <h2>Operations:</h2>
 <button onclick="insertCountry()" type="button" class="btn btn-lg btn-block btn-outline-success">Add country</button>
 <button onclick="updateCountry()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update country</button>
-<button type="button" class="btn btn-lg btn-block btn-outline-danger">Delete country</button>
+<button onclick="deleteCountry()" type="button" class="btn btn-lg btn-block btn-outline-danger">Delete country</button>
 </div>
 </div>
 <div class="row">
@@ -180,6 +180,24 @@
   </div>
   <button type="submit" class="btn btn-primary">Update country</button>
   <button  type="button" class="btn btn-danger" onclick="abort()">Abort update</button>
+  </sf:form>
+</div>
+<div id="deleteCountry" class="col-sm-4">
+  <h2>Delete country:</h2>
+  <sf:form method="post" modelAttribute="country" action="/template/deleteCountry">
+  <div class="form-group">
+    <sf:select path="id" class="form-control form-control-sm">
+    <c:forEach items="${countryList}" var="country" >
+
+        <sf:option value="${country.id}">${country.name}</sf:option>
+
+
+    </c:forEach>
+  </sf:select>
+
+  </div>
+  <button type="submit" class="btn btn-danger">Delete country</button>
+  <button  type="button" class="btn btn-danger" onclick="abort()">Abort deletion</button>
   </sf:form>
 </div>
 </div>
