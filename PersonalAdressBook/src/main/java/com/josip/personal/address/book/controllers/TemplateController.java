@@ -2,8 +2,6 @@ package com.josip.personal.address.book.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +40,8 @@ public class TemplateController {
 	private final SexRepository sexRepository;
 	private final CountryRepository countries;
 	private final CityRepository cityRepository;
+	private final String redirect="redirect:/template";
+	private final String template="template";
 	
 	@Autowired
 	public TemplateController(SexRepository sexRepository, CountryRepository country, CityRepository cityRepository) {
@@ -73,7 +73,7 @@ public class TemplateController {
             
 	        model.addAttribute("cities", city);
 	        
-	        return "template";
+	        return template;
 	    }
 
 	 /***
@@ -87,7 +87,7 @@ public class TemplateController {
 		 Sex sex=new Sex();
 		 sex.setName(name);
 		 sexRepository.save(sex);
-		 return "redirect:/template";
+		 return redirect;
 	 }
 	 /***
 	  * @author Josip Bošnjak
@@ -102,7 +102,7 @@ public class TemplateController {
          sex.setId(id);
          sex.setName(name);
          sexRepository.update(sex);
-		 return "redirect:/template";
+		 return redirect;
 	 }
 	 /***
 	  * @author Josip Bošnjak
@@ -118,7 +118,7 @@ public class TemplateController {
 		 Sex sex=new Sex();
 		 sex.setId(id);
 		 sexRepository.delete(sex);
-		 return "redirect:/template";
+		 return redirect;
 	 }
 	 /***
 	  * @author Josip Bošnjak
@@ -136,7 +136,7 @@ public class TemplateController {
 		 country.setAlpha_2(alpha_2);
 		 country.setAlpha_3(alpha_3);
 		 countries.save(country);
-		 return "redirect:/template";
+		 return redirect;
 	 }
 	 /***
 	  * @author Josip Bošnjak
@@ -155,7 +155,7 @@ public class TemplateController {
 		 country.setAlpha_2(alpha_2);
 		 country.setAlpha_3(alpha_3);
 		 countries.update(country);
-		 return "redirect:/template";
+		 return redirect;
 	 }
 	 /***
 	  * @author Josip Bošnjak
@@ -168,6 +168,55 @@ public class TemplateController {
 		 Country country=new Country();
 		 country.setId(id);
 		 countries.delete(country);
-		 return "redirect:/template";
+		 return redirect;
+	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 26.5.2019 17:54
+	  * @param name
+	  * @param zip_code
+	  * @param country_id
+	  * @return redirect if successfuly inserted city
+	  */
+	 @PostMapping("/template/insertCity")
+	 public String insertCity(@RequestParam("name")String name, @RequestParam("zip_code")String zip_code, @RequestParam("country_id")Long country_id) {
+		 City city=new City();
+		 city.setName(name);
+		 city.setZip_code(zip_code);
+		 city.setCountry_id(country_id);
+		 cityRepository.save(city);
+		 return redirect;
+	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 26.5.2019 17:54
+	  * @param id
+	  * @param name
+	  * @param zip_code
+	  * @param country_id
+	  * @return redirect if city is successfully updated
+	  */
+	 @PostMapping("/template/updateCity")
+	 public String updateCity(@RequestParam("id")Long id,@RequestParam("name")String name, @RequestParam("zip_code")String zip_code, @RequestParam("country_id")Long country_id ) {
+		 City city=new City();
+		 city.setId(id);
+		 city.setName(name);
+		 city.setZip_code(zip_code);
+		 city.setCountry_id(country_id);
+		 cityRepository.update(city);
+		 return redirect;
+	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 26.5.2019 17:55
+	  * @param id
+	  * @return redirect to template if successfully deleted
+	  */
+	 @PostMapping("/template/deleteCity")
+	 public String deleteCity(@RequestParam("id")Long id){
+		 City city=new City();
+		 city.setId(id);
+		 cityRepository.delete(city);
+		 return redirect;
 	 }
 }

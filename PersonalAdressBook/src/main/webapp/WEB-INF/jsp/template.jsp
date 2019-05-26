@@ -224,10 +224,8 @@
   <c:forEach items="${countryList}" var="country">
     <c:if test="${city.country_id == country.id}">
       <c:out value="${country.name}"/>
-
-    </c:if>
-
-</c:forEach>
+      </c:if>
+     </c:forEach>
 
 
       </td>
