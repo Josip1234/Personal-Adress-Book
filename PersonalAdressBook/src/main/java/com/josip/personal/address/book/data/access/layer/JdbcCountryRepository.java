@@ -38,8 +38,8 @@ public class JdbcCountryRepository implements CountryRepository {
 
 	@Override
 	public void update(Country country) {
-		jdbc.update("UPDATE country SET name=?,alpha_2=?,alpha_3=?",
-				country.getName(),country.getAlpha_2(),country.getAlpha_3());
+		jdbc.update("UPDATE country SET name=?,alpha_2=?,alpha_3=? WHERE id=?",
+				country.getName(),country.getAlpha_2(),country.getAlpha_3(),country.getId());
 
 	}
 

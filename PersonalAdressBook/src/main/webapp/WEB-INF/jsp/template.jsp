@@ -53,7 +53,7 @@
 <sf:form method="post" modelAttribute="sex" action="/template/insertSex">
 <div class="form-group">
 
-  <sf:input path="name" class="form-control form-control-sm" />
+  <sf:input path="name" class="form-control form-control-sm" placeholder="Name" />
 </div>
 <button type="submit" class="btn btn-primary">Insert new sex</button>
 <button  type="button" onclick="abort()" class="btn btn-danger">Abort inserting</button>
@@ -71,6 +71,9 @@
 
     </c:forEach>
   </sf:select>
+
+  </div>
+  <div class="form-group">
     <sf:input path="name" class="form-control form-control-sm" placeholder="New name"  />
   </div>
   <button type="submit" class="btn btn-primary">Update</button>
@@ -124,6 +127,60 @@
 </table>
 
 </div>
+</div>
+<div class="col-sm-4">
+  <h2>Operations:</h2>
+<button onclick="insertCountry()" type="button" class="btn btn-lg btn-block btn-outline-success">Add country</button>
+<button onclick="updateCountry()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update country</button>
+<button type="button" class="btn btn-lg btn-block btn-outline-danger">Delete country</button>
+</div>
+</div>
+<div class="row">
+<div id="insertCountry" class="col-sm-4">
+<h2>Insert new country:</h2>
+<sf:form method="post" modelAttribute="country" action="/template/insertCountry">
+<div class="form-group">
+
+  <sf:input path="name" class="form-control form-control-sm" placeholder="Country name" />
+
+
+</div>
+<div class="form-group">
+  <sf:input path="alpha_2" class="form-control form-control-sm" placeholder="Alpha 2"/>
+</div>
+<div class="form-group">
+  <sf:input path="alpha_3" class="form-control form-control-sm" placeholder="Alpha 3" />
+</div>
+<button type="submit" class="btn btn-primary">Insert new country</button>
+<button  type="button" onclick="abort()" class="btn btn-danger">Abort inserting</button>
+</sf:form>
+</div>
+<div id="updateCountry" class="col-sm-4">
+  <h2>Update country:</h2>
+  <sf:form method="post" modelAttribute="country" action="/template/updateCountry">
+  <div class="form-group">
+    <sf:select path="id" class="form-control form-control-sm">
+    <c:forEach items="${countryList}" var="country" >
+
+        <sf:option value="${country.id}">${country.name}</sf:option>
+
+
+    </c:forEach>
+  </sf:select>
+
+  </div>
+  <div class="form-group">
+    <sf:input path="name" class="form-control form-control-sm" placeholder="New country name"  />
+  </div>
+  <div class="form-group">
+    <sf:input path="alpha_2" class="form-control form-control-sm" placeholder="New alpha_2"  />
+  </div>
+  <div class="form-group">
+    <sf:input path="alpha_3" class="form-control form-control-sm" placeholder="New alpha_3"  />
+  </div>
+  <button type="submit" class="btn btn-primary">Update country</button>
+  <button  type="button" class="btn btn-danger" onclick="abort()">Abort update</button>
+  </sf:form>
 </div>
 </div>
 </div>

@@ -61,6 +61,7 @@ public class TemplateController {
 	        List<Country> country = new ArrayList<>();
 	        countries.findAll().forEach(c->country.add(c));
 	        model.addAttribute("countryList",country);
+	        model.addAttribute(new Country());
 	        return "template";
 	    }
 
@@ -68,11 +69,10 @@ public class TemplateController {
 	  * @author Josip Bošnjak
 	  * @since 25.5.2019 13:46
 	  * @param name sex name
-	  * @param model
 	  * @return redirect link to template since insertSex jsp does not exists
 	  */
 	 @PostMapping("/template/insertSex")
-	 public String insertSex(@RequestParam("name") String name,Model model) {
+	 public String insertSex(@RequestParam("name") String name) {
 		 Sex sex=new Sex();
 		 sex.setName(name);
 		 sexRepository.save(sex);
@@ -83,11 +83,10 @@ public class TemplateController {
 	  * @since 25.5.2019 15:00
 	  * @param id
 	  * @param name
-	  * @param model
 	  * @return redirect to template after successfully update of record.
 	  */
 	 @PostMapping("/template/updateSex")
-	 public String updateSex(@RequestParam("id")Long id,@RequestParam("name") String name,Model model) {
+	 public String updateSex(@RequestParam("id")Long id,@RequestParam("name") String name) {
          Sex sex=new Sex();
          sex.setId(id);
          sex.setName(name);
@@ -98,18 +97,53 @@ public class TemplateController {
 	  * @author Josip Bošnjak
 	  * @since 25.5.2019 17:16
 	  * @param id 
-	  * @param model
 	  * @return redirect to template site after successfully deletion
 	  * <strong>Since we only need database id, we dont need a name
 	  * as parameter in the function it will delete whole record 
 	  * without name provided.</strong>
 	  */
 	 @PostMapping("/template/deleteSex")
-	 public String deleteSex(@RequestParam("id")Long id, Model model) {
+	 public String deleteSex(@RequestParam("id")Long id) {
 		 Sex sex=new Sex();
 		 sex.setId(id);
 		 sexRepository.delete(sex);
 		 return "redirect:/template";
 	 }
-	
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 26.5.2019 11:16
+	  * @param id
+	  * @param name
+	  * @param alpha_2
+	  * @param alpha_3
+	  * @return redirect if country is successfully inserted
+	  */
+	 @PostMapping("/template/insertCountry")
+	 public String insertCountry(@RequestParam("name")String name,@RequestParam("alpha_2")String alpha_2,@RequestParam("alpha_3")String alpha_3) {
+		 Country country=new Country();
+		 country.setName(name);
+		 country.setAlpha_2(alpha_2);
+		 country.setAlpha_3(alpha_3);
+		 countries.save(country);
+		 return "redirect:/template";
+	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 26.5.2019 12:07
+	  * @param id
+	  * @param name
+	  * @param alpha_2
+	  * @param alpha_3
+	  * @return redirect if country is successfully updated
+	  */
+	 @PostMapping("/template/updateCountry")
+	 public String updateCountry(@RequestParam("id") Long id,@RequestParam("name")String name,@RequestParam("alpha_2")String alpha_2,@RequestParam("alpha_3")String alpha_3) {
+		 Country country=new Country();
+		 country.setId(id);
+		 country.setName(name);
+		 country.setAlpha_2(alpha_2);
+		 country.setAlpha_3(alpha_3);
+		 countries.update(country);
+		 return "redirect:/template";
+	 }
 }
