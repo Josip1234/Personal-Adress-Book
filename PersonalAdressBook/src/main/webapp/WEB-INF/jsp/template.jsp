@@ -201,6 +201,46 @@
   </sf:form>
 </div>
 </div>
+<div class="row">
+  <div class="col-sm-4">
+  <div class="table-responsive-sm">
+  <h2>City list:</h2>
+  <table class="table table-hover  table-sm table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Zip code</th>
+        <th scope="col">Country</th>
+      </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${cities}" var="city" >
+      <tr>
+        <th  scope="row"><c:out value="${city.id}"/></th>
+        <td ><c:out value="${city.name}"/></td>
+        <td ><c:out value="${city.zip_code}"/></td>
+        <td>
+  <c:forEach items="${countryList}" var="country">
+    <c:if test="${city.country_id == country.id}">
+      <c:out value="${country.name}"/>
+
+    </c:if>
+
+</c:forEach>
+
+
+      </td>
+
+      </tr>
+      </c:forEach>
+
+    </tbody>
+  </table>
+
+  </div>
+  </div>
+</div>
 </div>
 </body>
 </html>

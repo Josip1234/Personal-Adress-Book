@@ -2,6 +2,7 @@ package com.josip.personal.address.book.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.josip.personal.address.book.data.access.layer.CityRepository;
 import com.josip.personal.address.book.data.access.layer.CountryRepository;
 import com.josip.personal.address.book.data.access.layer.SexRepository;
+import com.josip.personal.address.book.presentation.layer.City;
 import com.josip.personal.address.book.presentation.layer.Country;
 import com.josip.personal.address.book.presentation.layer.Sex;
 
@@ -38,17 +41,19 @@ public class TemplateController {
 
 	private final SexRepository sexRepository;
 	private final CountryRepository countries;
+	private final CityRepository cityRepository;
 	
 	@Autowired
-	public TemplateController(SexRepository sexRepository, CountryRepository country) {
+	public TemplateController(SexRepository sexRepository, CountryRepository country, CityRepository cityRepository) {
 		this.sexRepository=sexRepository;
 		this.countries=country;
+		this.cityRepository=cityRepository;
 	}
 	/***
 	 * @author Josip Bošnjak
 	 * @since 24.5.2019. 14:10
 	 * @param model
-	 * @return view template with generated form for insert new sex, country
+	 * @return view template with generated form for insert new sex, country, city
 	 */
 	 @GetMapping({"/", "/template"})
 	    public String template(Model model) {
@@ -62,6 +67,12 @@ public class TemplateController {
 	        countries.findAll().forEach(c->country.add(c));
 	        model.addAttribute("countryList",country);
 	        model.addAttribute(new Country());
+	        
+	        List<City> city=new ArrayList<>();
+	        cityRepository.findAll().forEach(ci->city.add(ci));
+            
+	        model.addAttribute("cities", city);
+	        
 	        return "template";
 	    }
 
