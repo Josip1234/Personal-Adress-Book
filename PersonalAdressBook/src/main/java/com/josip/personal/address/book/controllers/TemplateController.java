@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.josip.personal.address.book.data.access.layer.AddressRepository;
 import com.josip.personal.address.book.data.access.layer.CityRepository;
 import com.josip.personal.address.book.data.access.layer.CountryRepository;
 import com.josip.personal.address.book.data.access.layer.SexRepository;
+import com.josip.personal.address.book.presentation.layer.Address;
 import com.josip.personal.address.book.presentation.layer.City;
 import com.josip.personal.address.book.presentation.layer.Country;
 import com.josip.personal.address.book.presentation.layer.Sex;
@@ -40,14 +42,16 @@ public class TemplateController {
 	private final SexRepository sexRepository;
 	private final CountryRepository countries;
 	private final CityRepository cityRepository;
+	private final AddressRepository addressRepository;
 	private final String redirect="redirect:/template";
 	private final String template="template";
 	
 	@Autowired
-	public TemplateController(SexRepository sexRepository, CountryRepository country, CityRepository cityRepository) {
+	public TemplateController(SexRepository sexRepository, CountryRepository country, CityRepository cityRepository, AddressRepository addressRepository) {
 		this.sexRepository=sexRepository;
 		this.countries=country;
 		this.cityRepository=cityRepository;
+		this.addressRepository=addressRepository;
 	}
 	/***
 	 * @author Josip Bošnjak
@@ -72,6 +76,11 @@ public class TemplateController {
 	        cityRepository.findAll().forEach(ci->city.add(ci));          
 	        model.addAttribute("cities", city);
 	        model.addAttribute(new City());
+	        
+	        List<Address> address=new ArrayList<>();
+	        addressRepository.findAll().forEach(ad->address.add(ad));
+	        model.addAttribute("address",address);
+	        model.addAttribute(new Address());
 	        return template;
 	    }
 
