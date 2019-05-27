@@ -15,7 +15,7 @@
 </div>
 <div class="container">
 <div class="row">
-<div class="col-sm-4">
+<div class="col-sm-8">
 <div class="table-responsive-sm">
 <h2>List of sex:</h2>
 <table class="table table-hover  table-sm table-bordered">
@@ -100,7 +100,7 @@
 </div>
 </div>
 <div class="row">
-<div class="col-sm-4">
+<div class="col-sm-8">
 <div class="table-responsive-sm">
 <h2>Country list:</h2>
 <table class="table table-hover  table-sm table-bordered">
@@ -202,7 +202,7 @@
 </div>
 </div>
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-8">
   <div class="table-responsive-sm">
   <h2>City list:</h2>
   <table class="table table-hover  table-sm table-bordered">
@@ -326,7 +326,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-8">
   <div class="table-responsive-sm">
   <h2>Address list:</h2>
   <table class="table table-hover  table-sm table-bordered">
@@ -450,7 +450,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-8">
   <div class="table-responsive-sm">
   <h2>List of contacts:</h2>
   <table class="table table-hover  table-sm table-bordered">
