@@ -5,6 +5,9 @@ function removeForms(){
   document.getElementById('insertCountry').style.display="none";
   document.getElementById('updateCountry').style.display="none";
   document.getElementById('deleteCountry').style.display="none";
+  document.getElementById('insertCity').style.display="none";
+  document.getElementById('updateCity').style.display="none";
+  document.getElementById('deleteCity').style.display="none";
 }
 function addNewSex(){
   document.getElementById('updateSex').style.display="none";
@@ -13,6 +16,9 @@ function addNewSex(){
     document.getElementById('insertCountry').style.display="none";
     document.getElementById('updateCountry').style.display="none";
     document.getElementById('deleteCountry').style.display="none";
+    document.getElementById('insertCity').style.display="none";
+      document.getElementById('updateCity').style.display="none";
+        document.getElementById('deleteCity').style.display="none";
 }
 function updateSex(){
   document.getElementById('updateSex').style.display="initial";
@@ -21,6 +27,9 @@ function updateSex(){
   document.getElementById('insertCountry').style.display="none";
   document.getElementById('updateCountry').style.display="none";
   document.getElementById('deleteCountry').style.display="none";
+  document.getElementById('insertCity').style.display="none";
+    document.getElementById('updateCity').style.display="none";
+      document.getElementById('deleteCity').style.display="none";
 }
 function deleteSex(){
   document.getElementById('updateSex').style.display="none";
@@ -29,6 +38,9 @@ function deleteSex(){
   document.getElementById('insertCountry').style.display="none";
   document.getElementById('updateCountry').style.display="none";
   document.getElementById('deleteCountry').style.display="none";
+  document.getElementById('insertCity').style.display="none";
+    document.getElementById('updateCity').style.display="none";
+      document.getElementById('deleteCity').style.display="none";
 }
 function insertCountry(){
   document.getElementById('updateSex').style.display="none";
@@ -37,6 +49,9 @@ function insertCountry(){
   document.getElementById('insertCountry').style.display="initial";
   document.getElementById('updateCountry').style.display="none";
   document.getElementById('deleteCountry').style.display="none";
+  document.getElementById('insertCity').style.display="none";
+    document.getElementById('updateCity').style.display="none";
+      document.getElementById('deleteCity').style.display="none";
 }
 function updateCountry(){
   document.getElementById('updateSex').style.display="none";
@@ -45,6 +60,9 @@ function updateCountry(){
   document.getElementById('insertCountry').style.display="none";
   document.getElementById('updateCountry').style.display="initial";
   document.getElementById('deleteCountry').style.display="none";
+  document.getElementById('insertCity').style.display="none";
+    document.getElementById('updateCity').style.display="none";
+      document.getElementById('deleteCity').style.display="none";
 }
 function deleteCountry(){
   document.getElementById('updateSex').style.display="none";
@@ -53,6 +71,42 @@ function deleteCountry(){
   document.getElementById('insertCountry').style.display="none";
   document.getElementById('updateCountry').style.display="none";
   document.getElementById('deleteCountry').style.display="initial";
+  document.getElementById('insertCity').style.display="none";
+    document.getElementById('updateCity').style.display="none";
+      document.getElementById('deleteCity').style.display="none";
+}
+function insertCity(){
+  document.getElementById('updateSex').style.display="none";
+  document.getElementById('insertSex').style.display="none";
+  document.getElementById('deleteSex').style.display="none";
+  document.getElementById('insertCountry').style.display="none";
+  document.getElementById('updateCountry').style.display="none";
+  document.getElementById('deleteCountry').style.display="none";
+  document.getElementById('insertCity').style.display="initial";
+  document.getElementById('updateCity').style.display="none";
+    document.getElementById('deleteCity').style.display="none";
+}
+function updateCity(){
+  document.getElementById('updateSex').style.display="none";
+  document.getElementById('insertSex').style.display="none";
+  document.getElementById('deleteSex').style.display="none";
+  document.getElementById('insertCountry').style.display="none";
+  document.getElementById('updateCountry').style.display="none";
+  document.getElementById('deleteCountry').style.display="none";
+  document.getElementById('insertCity').style.display="none";
+  document.getElementById('updateCity').style.display="initial";
+  document.getElementById('deleteCity').style.display="none";
+}
+function deleteCity(){
+  document.getElementById('updateSex').style.display="none";
+  document.getElementById('insertSex').style.display="none";
+  document.getElementById('deleteSex').style.display="none";
+  document.getElementById('insertCountry').style.display="none";
+  document.getElementById('updateCountry').style.display="none";
+  document.getElementById('deleteCountry').style.display="none";
+  document.getElementById('insertCity').style.display="none";
+  document.getElementById('updateCity').style.display="none";
+  document.getElementById('deleteCity').style.display="initial";
 }
 function abort(){
 removeForms();

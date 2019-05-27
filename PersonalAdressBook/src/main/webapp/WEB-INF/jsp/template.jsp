@@ -238,6 +238,92 @@
 
   </div>
   </div>
+  <div class="col-sm-4">
+    <h2>Operations:</h2>
+  <button onclick="insertCity()" type="button" class="btn btn-lg btn-block btn-outline-success">Add city</button>
+  <button onclick="updateCity()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update city</button>
+  <button onclick="deleteCity()" type="button" class="btn btn-lg btn-block btn-outline-danger">Delete city</button>
+  </div>
+</div>
+<div class="row">
+  <div id="insertCity" class="col-sm-4">
+  <h2>Insert new city:</h2>
+  <sf:form method="post" modelAttribute="city" action="/template/insertCity">
+  <div class="form-group">
+
+    <sf:input path="name" class="form-control form-control-sm" placeholder="City name" />
+
+
+  </div>
+  <div class="form-group">
+    <sf:input path="zip_code" class="form-control form-control-sm" placeholder="City zip code"/>
+  </div>
+  <div class="form-group">
+    <sf:select path="country_id" class="form-control form-control-sm">
+    <c:forEach items="${countryList}" var="country" >
+
+        <sf:option value="${country.id}">${country.name}</sf:option>
+
+
+    </c:forEach>
+  </sf:select>
+  </div>
+  <button type="submit" class="btn btn-primary">Insert new City</button>
+  <button  type="button" onclick="abort()" class="btn btn-danger">Abort inserting</button>
+  </sf:form>
+  </div>
+  <div id="updateCity" class="col-sm-4">
+    <h2>Update city:</h2>
+    <sf:form method="post" modelAttribute="city" action="/template/updateCity">
+    <div class="form-group">
+      <sf:select path="id" class="form-control form-control-sm">
+      <c:forEach items="${cities}" var="city" >
+
+          <sf:option value="${city.id}">${city.name}</sf:option>
+
+
+      </c:forEach>
+    </sf:select>
+
+    </div>
+    <div class="form-group">
+      <sf:input path="name" class="form-control form-control-sm" placeholder="New city name"  />
+    </div>
+    <div class="form-group">
+      <sf:input path="zip_code" class="form-control form-control-sm" placeholder="New zip code"  />
+    </div>
+    <div class="form-group">
+      <sf:select path="country_id" class="form-control form-control-sm">
+      <c:forEach items="${countryList}" var="country" >
+
+          <sf:option value="${country.id}">${country.name}</sf:option>
+
+
+      </c:forEach>
+    </sf:select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update city</button>
+    <button  type="button" class="btn btn-danger" onclick="abort()">Abort update</button>
+    </sf:form>
+  </div>
+  <div id="deleteCity" class="col-sm-4">
+    <h2>Delete city:</h2>
+    <sf:form method="post" modelAttribute="city" action="/template/deleteCity">
+    <div class="form-group">
+      <sf:select path="id" class="form-control form-control-sm">
+      <c:forEach items="${cities}" var="city" >
+
+          <sf:option value="${city.id}">${city.name}</sf:option>
+
+
+      </c:forEach>
+    </sf:select>
+
+    </div>
+    <button type="submit" class="btn btn-danger">Delete city</button>
+    <button  type="button" class="btn btn-danger" onclick="abort()">Abort deletion</button>
+    </sf:form>
+  </div>
 </div>
 </div>
 </body>

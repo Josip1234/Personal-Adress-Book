@@ -69,10 +69,9 @@ public class TemplateController {
 	        model.addAttribute(new Country());
 	        
 	        List<City> city=new ArrayList<>();
-	        cityRepository.findAll().forEach(ci->city.add(ci));
-            
+	        cityRepository.findAll().forEach(ci->city.add(ci));          
 	        model.addAttribute("cities", city);
-	        
+	        model.addAttribute(new City());
 	        return template;
 	    }
 
