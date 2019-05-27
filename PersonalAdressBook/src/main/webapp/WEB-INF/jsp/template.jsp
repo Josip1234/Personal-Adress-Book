@@ -449,6 +449,218 @@
     </sf:form>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-4">
+  <div class="table-responsive-sm">
+  <h2>List of contacts:</h2>
+  <table class="table table-hover  table-sm table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Sex</th>
+        <th scope="col">Adress</th>
+      </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${conta}" var="cont" >
+      <tr>
+        <th  scope="row"><c:out value="${cont.id}"/></th>
+        <td ><c:out value="${cont.first_name}"/></td>
+        <td ><c:out value="${cont.last_name}"/></td>
+        <td ><c:out value="${cont.phone}"/></td>
+        <td ><c:out value="${cont.email}"/></td>
+        <td >
+          <c:forEach items="${se}" var="se" >
+              <c:if test="${cont.sex_id == se.id}">
+                  <c:out value="${se.name}"/>
+              </c:if>
+
+          </c:forEach>
+
+
+
+        </td>
+        <td >
+          <c:forEach items="${addr}" var="adr" >
+              <c:if test="${cont.address_id == adr.id}">
+                  <c:out value="${adr.street}"/>
+                  <c:out value="${adr.street_no}"/>
+                  <c:forEach items="${cities}" var="city" >
+                    <c:if test="${adr.city_id == city.id}">
+                      <c:out value="${city.name}"/>
+                      <c:forEach items="${countryList}" var="country">
+                        <c:if test="${city.country_id == country.id}">
+                          <c:out value="${country.name}"/>
+                          </c:if>
+
+                         </c:forEach>
+                      </c:if>
+
+
+                  </c:forEach>
+              </c:if>
+
+          </c:forEach>
+
+
+         </td>
+
+      </tr>
+      </c:forEach>
+
+    </tbody>
+  </table>
+
+  </div>
+  </div>
+  <div class="col-sm-4">
+    <h2>Operations:</h2>
+  <button onclick="insertContact()" type="button" class="btn btn-lg btn-block btn-outline-success">Add new contact</button>
+  <button onclick="updateContact()" type="button" class="btn btn-lg btn-block btn-outline-primary">Edit contact</button>
+  <button  onclick="deleteContact()" type="button" class="btn btn-lg btn-block btn-outline-danger">Delete contact</button>
+  </div>
+</div>
+<div class="row">
+  <div id="insertContact" class="col-sm-4">
+<h2>Insert new contact:</h2>
+<sf:form method="post" modelAttribute="contact" action="/template/insertContact">
+<div class="form-group">
+
+  <sf:input path="first_name" class="form-control form-control-sm" placeholder="First name" />
+</div>
+<div class="form-group">
+  <sf:input path="last_name" class="form-control form-control-sm" placeholder="Last name" />
+</div>
+<div class="form-group">
+  <sf:input path="phone" class="form-control form-control-sm" placeholder="Phone" />
+</div>
+<div class="form-group">
+  <sf:input path="email" class="form-control form-control-sm" placeholder="Email" />
+</div>
+<div class="form-group">
+  <sf:select path="sex_id" class="form-control form-control-sm">
+  <c:forEach items="${se}" var="se" >
+
+      <sf:option value="${se.id}">${se.name}</sf:option>
+
+
+  </c:forEach>
+</sf:select>
+</div>
+<div class="form-group">
+  <sf:select path="address_id" class="form-control form-control-sm">
+  <c:forEach items="${addr}" var="ad" >
+
+      <sf:option value="${ad.id}">${ad.street} ${ad.street_no}
+        <c:forEach items="${cities}" var="city" >
+          <c:if test="${ad.city_id == city.id}">
+            <c:out value="${city.name}"/>
+            <c:forEach items="${countryList}" var="country">
+              <c:if test="${city.country_id == country.id}">
+                <c:out value="${country.name}"/>
+                </c:if>
+
+               </c:forEach>
+            </c:if>
+            </c:forEach>
+            </sf:option>
+
+
+  </c:forEach>
+</sf:select>
+</div>
+<button type="submit" class="btn btn-primary">Insert new contact</button>
+<button  type="button" onclick="abort()" class="btn btn-danger">Abort inserting</button>
+</sf:form>
+</div>
+
+<div id="updateContact" class="col-sm-4">
+  <h2>Update Contact:</h2>
+  <sf:form method="post" modelAttribute="contact" action="/template/updateContact">
+    <div class="form-group">
+      <sf:select path="id" class="form-control form-control-sm">
+      <c:forEach items="${conta}" var="cont" >
+
+          <sf:option value="${cont.id}">${cont.first_name} ${cont.last_name}</sf:option>
+
+
+      </c:forEach>
+    </sf:select>
+
+    </div>
+  <div class="form-group">
+    <sf:input path="first_name" class="form-control form-control-sm" placeholder="First name" />
+</div>
+<div class="form-group">
+  <sf:input path="last_name" class="form-control form-control-sm" placeholder="Last name" />
+</div>
+<div class="form-group">
+  <sf:input path="phone" class="form-control form-control-sm" placeholder="Phone" />
+</div>
+<div class="form-group">
+  <sf:input path="email" class="form-control form-control-sm" placeholder="Email" />
+</div>
+<div class="form-group">
+  <sf:select path="sex_id" class="form-control form-control-sm">
+  <c:forEach items="${se}" var="se" >
+
+      <sf:option value="${se.id}">${se.name}</sf:option>
+
+
+  </c:forEach>
+</sf:select>
+
+</div>
+<div class="form-group">
+<sf:select path="address_id" class="form-control form-control-sm">
+<c:forEach items="${addr}" var="ad" >
+
+    <sf:option value="${ad.id}">${ad.street} ${ad.street_no}
+      <c:forEach items="${cities}" var="city" >
+        <c:if test="${ad.city_id == city.id}">
+          <c:out value="${city.name}"/>
+          <c:forEach items="${countryList}" var="country">
+            <c:if test="${city.country_id == country.id}">
+              <c:out value="${country.name}"/>
+              </c:if>
+
+             </c:forEach>
+          </c:if>
+          </c:forEach>
+          </sf:option>
+
+
+</c:forEach>
+</sf:select>
+</div>
+
+  <button type="submit" class="btn btn-primary">Update address</button>
+  <button  type="button" class="btn btn-danger" onclick="abort()">Abort update</button>
+  </sf:form>
+</div>
+<div id="deleteContact" class="col-sm-4">
+  <h2>Delete contact:</h2>
+  <sf:form method="post" modelAttribute="contact" action="/template/deleteContact">
+  <div class="form-group">
+    <sf:select path="id" class="form-control form-control-sm">
+    <c:forEach items="${conta}" var="cont" >
+
+        <sf:option value="${cont.id}">${cont.first_name} ${cont.last_name}</sf:option>
+
+
+    </c:forEach>
+  </sf:select>
+
+  </div>
+  <button type="submit" class="btn btn-danger">Delete Contact</button>
+  <button  type="button" class="btn btn-danger" onclick="abort()">Abort deletion</button>
+  </sf:form>
+</div>
+</div>
 </div>
 </body>
 </html>
