@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.josip.personal.address.book.data.access.layer.AddressRepository;
 import com.josip.personal.address.book.data.access.layer.CityRepository;
+import com.josip.personal.address.book.data.access.layer.ContactRepository;
 import com.josip.personal.address.book.data.access.layer.CountryRepository;
 import com.josip.personal.address.book.data.access.layer.SexRepository;
 import com.josip.personal.address.book.presentation.layer.Address;
 import com.josip.personal.address.book.presentation.layer.City;
+import com.josip.personal.address.book.presentation.layer.Contact;
 import com.josip.personal.address.book.presentation.layer.Country;
 import com.josip.personal.address.book.presentation.layer.Sex;
 
@@ -43,15 +45,17 @@ public class TemplateController {
 	private final CountryRepository countries;
 	private final CityRepository cityRepository;
 	private final AddressRepository addressRepository;
+	private final ContactRepository contactRepository;
 	private final String redirect="redirect:/template";
 	private final String template="template";
 	
 	@Autowired
-	public TemplateController(SexRepository sexRepository, CountryRepository country, CityRepository cityRepository, AddressRepository addressRepository) {
+	public TemplateController(SexRepository sexRepository, CountryRepository country, CityRepository cityRepository, AddressRepository addressRepository, ContactRepository contactRepository) {
 		this.sexRepository=sexRepository;
 		this.countries=country;
 		this.cityRepository=cityRepository;
 		this.addressRepository=addressRepository;
+		this.contactRepository=contactRepository;
 	}
 	/***
 	 * @author Josip Bošnjak
@@ -81,6 +85,11 @@ public class TemplateController {
 	        addressRepository.findAll().forEach(ad->address.add(ad));
 	        model.addAttribute("addr",address);
 	        model.addAttribute(new Address());
+	        
+	        List<Contact> contact=new ArrayList<>();
+	        contactRepository.findAll().forEach(cnt->contact.add(cnt));
+	        model.addAttribute("conta",contact);
+	        model.addAttribute(new Contact());
 	        return template;
 	    }
 
@@ -274,6 +283,67 @@ public class TemplateController {
 		 Address address = new Address();
 		 address.setId(id);
 		 addressRepository.delete(address);
+		 return redirect;
+	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 27.5.2019 19:39
+	  * @param first_name
+	  * @param last_name
+	  * @param phone
+	  * @param email
+	  * @param sex_id
+	  * @param address_id
+	  * @return redirect if data has been successfully saved into the database
+	  */
+	 @PostMapping("/template/insertContact")
+	 public String insertContact(@RequestParam("first_name")String first_name,@RequestParam("last_name")String last_name, @RequestParam("phone")String phone,@RequestParam("email")String email, @RequestParam("sex_id")Long sex_id, @RequestParam("address_id")Long address_id) {
+		 Contact contact=new Contact();
+		 contact.setFirst_name(first_name);
+		 contact.setLast_name(last_name);
+		 contact.setPhone(phone);
+		 contact.setEmail(email);
+		 contact.setSex_id(sex_id);
+		 contact.setAddress_id(address_id);
+		 contactRepository.save(contact);
+		 return redirect;
+	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 27.5.2019 19:42
+	  * @param id
+	  * @param first_name
+	  * @param last_name
+	  * @param phone
+	  * @param email
+	  * @param sex_id
+	  * @param address_id
+	  * @return redirect if data has been updated.
+	  */
+	 @PostMapping("/template/updateContact")
+	 public String updateContact(@RequestParam("id")Long id, @RequestParam("first_name")String first_name,@RequestParam("last_name")String last_name, @RequestParam("phone")String phone,@RequestParam("email")String email, @RequestParam("sex_id")Long sex_id, @RequestParam("address_id")Long address_id ) {
+		 Contact contact=new Contact();
+		 contact.setId(id);
+		 contact.setFirst_name(first_name);
+		 contact.setLast_name(last_name);
+		 contact.setPhone(phone);
+		 contact.setEmail(email);
+		 contact.setSex_id(sex_id);
+		 contact.setAddress_id(address_id);
+		 contactRepository.update(contact);
+		 return redirect;
+	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 27.5.2019 19:44
+	  * @param id
+	  * @return redirect if contact has been successfuly deleted from the database.
+	  */
+	 @PostMapping("/template/deleteContact")
+	 public String deleteContact(@RequestParam("id")Long id) {
+		 Contact contact=new Contact();
+		 contact.setId(id);
+		 contactRepository.delete(contact);
 		 return redirect;
 	 }
 }
