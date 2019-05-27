@@ -325,6 +325,130 @@
     </sf:form>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-4">
+  <div class="table-responsive-sm">
+  <h2>Address list:</h2>
+  <table class="table table-hover  table-sm table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Street</th>
+        <th scope="col">Street number</th>
+        <th scope="col">City</th>
+      </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${addr}" var="ad" >
+      <tr>
+        <th  scope="row"><c:out value="${ad.id}"/></th>
+        <td ><c:out value="${ad.street}"/></td>
+        <td ><c:out value="${ad.street_no}"/></td>
+        <td>
+  <c:forEach items="${cities}" var="city">
+    <c:if test="${ad.city_id == city.id}">
+      <c:out value="${city.name}"/>
+      </c:if>
+     </c:forEach>
+
+
+      </td>
+
+      </tr>
+      </c:forEach>
+
+    </tbody>
+  </table>
+
+  </div>
+  </div>
+  <div class="col-sm-4">
+    <h2>Operations:</h2>
+  <button onclick="insertAddress()" type="button" class="btn btn-lg btn-block btn-outline-success">Add new address</button>
+  <button onclick="updateAddress()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update address</button>
+  <button onclick="deleteAddress()"type="button" class="btn btn-lg btn-block btn-outline-danger">Delete address</button>
+  </div>
+</div>
+<div class="row">
+  <div id="insertAddress" class="col-sm-4">
+  <h2>Insert new address:</h2>
+  <sf:form method="post" modelAttribute="address" action="/template/insertAddress">
+  <div class="form-group">
+
+    <sf:input path="street" class="form-control form-control-sm" placeholder="Street name" />
+
+
+  </div>
+  <div class="form-group">
+    <sf:input path="street_no" class="form-control form-control-sm" placeholder="Street number"/>
+  </div>
+  <div class="form-group">
+    <sf:select path="city_id" class="form-control form-control-sm">
+    <c:forEach items="${cities}" var="city" >
+
+        <sf:option value="${city.id}">${city.name}</sf:option>
+
+
+    </c:forEach>
+  </sf:select>
+  </div>
+  <button type="submit" class="btn btn-primary">Insert new address</button>
+  <button  type="button" onclick="abort()" class="btn btn-danger">Abort inserting</button>
+  </sf:form>
+  </div>
+  <div id="updateAddress" class="col-sm-4">
+    <h2>Update address:</h2>
+    <sf:form method="post" modelAttribute="address" action="/template/updateAddress">
+    <div class="form-group">
+      <sf:select path="id" class="form-control form-control-sm">
+      <c:forEach items="${addr}" var="adr" >
+
+          <sf:option value="${adr.id}">${adr.street}</sf:option>
+
+
+      </c:forEach>
+    </sf:select>
+
+    </div>
+    <div class="form-group">
+      <sf:input path="street" class="form-control form-control-sm" placeholder="New street name"  />
+    </div>
+    <div class="form-group">
+      <sf:input path="street_no" class="form-control form-control-sm" placeholder="New street number"  />
+    </div>
+    <div class="form-group">
+      <sf:select path="city_id" class="form-control form-control-sm">
+      <c:forEach items="${cities}" var="city" >
+
+          <sf:option value="${city.id}">${city.name}</sf:option>
+
+
+      </c:forEach>
+    </sf:select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update address</button>
+    <button  type="button" class="btn btn-danger" onclick="abort()">Abort update</button>
+    </sf:form>
+  </div>
+  <div id="deleteAddress" class="col-sm-4">
+    <h2>Delete address:</h2>
+    <sf:form method="post" modelAttribute="address" action="/template/deleteAddress">
+    <div class="form-group">
+      <sf:select path="id" class="form-control form-control-sm">
+      <c:forEach items="${addr}" var="ad" >
+
+          <sf:option value="${ad.id}">${ad.street}</sf:option>
+
+
+      </c:forEach>
+    </sf:select>
+
+    </div>
+    <button type="submit" class="btn btn-danger">Delete address</button>
+    <button  type="button" class="btn btn-danger" onclick="abort()">Abort deletion</button>
+    </sf:form>
+  </div>
+</div>
 </div>
 </body>
 </html>

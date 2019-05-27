@@ -37,7 +37,7 @@ public class JdbcAddressRepository implements AddressRepository {
 
 	@Override
 	public void update(Address address) {
-		jdbc.update("UPDATE address SET street=?, street_no=?, city_id=? WHERE id=?", address.getStreet(), address.getStreet_no(),address.getCity_id());
+		jdbc.update("UPDATE address SET street=?, street_no=?, city_id=? WHERE id=?", address.getStreet(), address.getStreet_no(),address.getCity_id(),address.getId());
 
 	}
 

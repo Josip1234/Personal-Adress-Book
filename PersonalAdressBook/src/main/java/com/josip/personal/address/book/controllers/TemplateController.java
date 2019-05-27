@@ -79,7 +79,7 @@ public class TemplateController {
 	        
 	        List<Address> address=new ArrayList<>();
 	        addressRepository.findAll().forEach(ad->address.add(ad));
-	        model.addAttribute("address",address);
+	        model.addAttribute("addr",address);
 	        model.addAttribute(new Address());
 	        return template;
 	    }
@@ -225,6 +225,55 @@ public class TemplateController {
 		 City city=new City();
 		 city.setId(id);
 		 cityRepository.delete(city);
+		 return redirect;
+	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 27.5.2019 17:03
+	  * @param street
+	  * @param street_no
+	  * @param city_id
+	  * @return redirect if successfully inserted data into the table
+	  */
+	 @PostMapping("/template/insertAddress")
+	 public String insertAddress(@RequestParam("street")String street, @RequestParam("street_no")String street_no, @RequestParam("city_id")Long city_id) {
+		 Address adress=new Address();
+		 adress.setStreet(street);
+		 adress.setStreet_no(street_no);
+		 adress.setCity_id(city_id);
+		 addressRepository.save(adress);
+		 return redirect;
+	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 27.5.2019 17:08
+	  * @param id
+	  * @param street
+	  * @param street_no
+	  * @param city_id
+	  * @return redirect if update was successful
+	  */
+	 @PostMapping("/template/updateAddress")
+	 public String updateAddress(@RequestParam("id")Long id,@RequestParam("street")String street, @RequestParam("street_no")String street_no, @RequestParam("city_id")Long city_id) {
+		 Address address = new Address();
+		 address.setId(id);
+		 address.setStreet(street);
+		 address.setStreet_no(street_no);
+		 address.setCity_id(city_id);
+		 addressRepository.update(address);
+		 return redirect;
+	 }
+	 /***
+	  * @author Josip Bošnjak
+	  * @since 27.5.2019 17:11
+	  * @param id
+	  * @return redirect if successfully deleted
+	  */
+	 @PostMapping("/template/deleteAddress")
+	 public String deleteAddress(@RequestParam("id")Long id) {
+		 Address address = new Address();
+		 address.setId(id);
+		 addressRepository.delete(address);
 		 return redirect;
 	 }
 }
