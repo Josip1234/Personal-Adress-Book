@@ -72,10 +72,14 @@ public class TemplateController {
 	 * @return view template with generated form for insert new sex, country, city
 	 */
 
+	public List<Sex> findSexData(List<Sex> sex){
+        sexRepository.findAll().forEach(i->sex.add(i));
+        return sex;
+	}
 	 @GetMapping({"/", "/template"})
 	    public String template(Model model) {
-	        List<Sex> sex = new ArrayList<>();
-	        sexRepository.findAll().forEach(i->sex.add(i));
+			List<Sex> sex = new ArrayList<>();
+            sex=findSexData(sex);
 	       
 	        model.addAttribute("se",sex);
 	        model.addAttribute(new Sex());
@@ -113,11 +117,10 @@ public class TemplateController {
 	  */
 	 @PostMapping("/template/insertSex")
 	 public String insertSex(@Valid Sex sex,Errors errors) {
-		 
-	        
+		
 		 if(errors.hasErrors()) {
 			  
-			
+			  
 			  return "template";
 		 }
 		 sexRepository.save(sex);
@@ -126,6 +129,7 @@ public class TemplateController {
 		 
 		
 	 }
+
 
 	 
 	 /***
