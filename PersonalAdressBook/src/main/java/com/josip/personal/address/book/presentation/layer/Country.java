@@ -1,5 +1,8 @@
 package com.josip.personal.address.book.presentation.layer;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +19,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Country {
 private Long id;
+@NotBlank
+@Size(min=1, max=50, message="{country.name.size}")
 private String name;
+@NotBlank
+@Size(min=1, max=2, message="{country.size.alpha}")
 private String alpha_2;
+@NotBlank
+@Size(min=1, max=3, message="{country.size.alpha}")
 private String alpha_3;
 
 }

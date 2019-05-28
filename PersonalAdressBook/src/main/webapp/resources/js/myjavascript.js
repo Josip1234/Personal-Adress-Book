@@ -14,6 +14,7 @@ function removeForms(){
   document.getElementById('insertContact').style.display="none";
   document.getElementById('updateContact').style.display="none";
   document.getElementById('deleteContact').style.display="none";
+  
 }
 function addNewSex(){
   document.getElementById('updateSex').style.display="none";
@@ -269,6 +270,9 @@ function deleteContact(){
     document.getElementById('insertContact').style.display="none";
       document.getElementById('updateContact').style.display="none";
       document.getElementById('deleteContact').style.display="initial";
+}
+function displayErrors(){
+  document.getElementById('err').style.display="initial";
 }
 function abort(){
 removeForms();

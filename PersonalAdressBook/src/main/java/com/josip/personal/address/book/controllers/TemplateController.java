@@ -2,10 +2,17 @@ package com.josip.personal.address.book.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,7 +54,8 @@ public class TemplateController {
 	private final AddressRepository addressRepository;
 	private final ContactRepository contactRepository;
 	private final String redirect="redirect:/template";
-	private final String template="template";
+	private final String template="/template";
+	
 	
 	@Autowired
 	public TemplateController(SexRepository sexRepository, CountryRepository country, CityRepository cityRepository, AddressRepository addressRepository, ContactRepository contactRepository) {
@@ -63,6 +71,7 @@ public class TemplateController {
 	 * @param model
 	 * @return view template with generated form for insert new sex, country, city
 	 */
+
 	 @GetMapping({"/", "/template"})
 	    public String template(Model model) {
 	        List<Sex> sex = new ArrayList<>();
@@ -90,6 +99,8 @@ public class TemplateController {
 	        contactRepository.findAll().forEach(cnt->contact.add(cnt));
 	        model.addAttribute("conta",contact);
 	        model.addAttribute(new Contact());
+	        
+	     
 	        return template;
 	    }
 
@@ -98,14 +109,25 @@ public class TemplateController {
 	  * @since 25.5.2019 13:46
 	  * @param name sex name
 	  * @return redirect link to template since insertSex jsp does not exists
+	  * if model validation is valid insert record into the database 
 	  */
 	 @PostMapping("/template/insertSex")
-	 public String insertSex(@RequestParam("name") String name) {
-		 Sex sex=new Sex();
-		 sex.setName(name);
+	 public String insertSex(@Valid Sex sex,Errors errors) {
+		 
+	        
+		 if(errors.hasErrors()) {
+			  
+			
+			  return "template";
+		 }
 		 sexRepository.save(sex);
-		 return redirect;
+			 
+	      return redirect;
+		 
+		
 	 }
+
+	 
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 25.5.2019 15:00
@@ -146,12 +168,32 @@ public class TemplateController {
 	  * @param alpha_3
 	  * @return redirect if country is successfully inserted
 	  */
+	 /***
+	  * Because your controller is annotated with @SessionAttributes("user") the model will be stored in session the first time it has been created. Subsequent requests will pull the model from session.
+	  * @return
+	  */
+	 @ModelAttribute("country")
+	 public Country createCountry() {
+	     return new Country();
+	 }
+	 @ModelAttribute("city")
+	 public City createCity() {
+	     return new City();
+	 }
+	 @ModelAttribute("address")
+	 public Address createAddress() {
+	     return new Address();
+	 }
+	 @ModelAttribute("contact")
+	 public Contact createContact() {
+	     return new Contact();
+	 }
+	 
 	 @PostMapping("/template/insertCountry")
-	 public String insertCountry(@RequestParam("name")String name,@RequestParam("alpha_2")String alpha_2,@RequestParam("alpha_3")String alpha_3) {
-		 Country country=new Country();
-		 country.setName(name);
-		 country.setAlpha_2(alpha_2);
-		 country.setAlpha_3(alpha_3);
+	 public String insertCountry(@Valid Country country, Errors errors) {
+		if(errors.hasErrors()) {
+			return template;
+		}
 		 countries.save(country);
 		 return redirect;
 	 }

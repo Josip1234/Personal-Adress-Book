@@ -12,6 +12,10 @@
 <div class="jumbotron text-center">
   <h1>Personal address book</h1>
   <p>Remembers your contacts while you alive!!!</p>
+
+
+
+
 </div>
 <div class="container">
 <div class="row">
@@ -48,14 +52,19 @@
 </div>
 </div>
 <div class="row">
+
   <div id="insertSex" class="col-sm-4">
 <h2>Insert new sex:</h2>
 <sf:form method="post" modelAttribute="sex" action="/template/insertSex">
 <div class="form-group">
 
   <sf:input path="name" class="form-control form-control-sm" placeholder="Name" />
+  <sf:errors path="name" />
+
+
 </div>
-<button type="submit" class="btn btn-primary">Insert new sex</button>
+
+<button type="submit" class="btn btn-primary" onclick="displayErrors()">Insert new sex</button>
 <button  type="button" onclick="abort()" class="btn btn-danger">Abort inserting</button>
 </sf:form>
 </div>
@@ -142,14 +151,16 @@
 <div class="form-group">
 
   <sf:input path="name" class="form-control form-control-sm" placeholder="Country name" />
-
+  <sf:errors path="name" />
 
 </div>
 <div class="form-group">
   <sf:input path="alpha_2" class="form-control form-control-sm" placeholder="Alpha 2"/>
+  <sf:errors path="alpha_2" />
 </div>
 <div class="form-group">
   <sf:input path="alpha_3" class="form-control form-control-sm" placeholder="Alpha 3" />
+  <sf:errors path="alpha_3" />
 </div>
 <button type="submit" class="btn btn-primary">Insert new country</button>
 <button  type="button" onclick="abort()" class="btn btn-danger">Abort inserting</button>
