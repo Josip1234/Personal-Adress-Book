@@ -4,7 +4,7 @@ CREATE TABLE contact
     first_name varchar(20) NOT NULL,
     last_name varchar(50) NOT NULL,
     phone varchar(13) NOT NULL,
-    email character varying(50),
+    email character varying(50) NOT NULL,
     sex_id bigint NOT NULL,
     address_id bigint NOT NULL,
     PRIMARY KEY (id),
