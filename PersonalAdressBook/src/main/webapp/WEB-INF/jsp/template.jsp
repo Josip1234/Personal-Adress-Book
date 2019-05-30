@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML>
 <head>
 <title>Personal adress book</title>
@@ -83,7 +84,14 @@
 
   </div>
   <div class="form-group">
-    <sf:input path="name" class="form-control form-control-sm" placeholder="New name"  />
+
+    <c:forEach items="${se}" var="sex" varStatus="status">
+  <c:if test='${fn:length(se) == 1 }'>
+      <p>Current value: <c:out value='${sex.name}'/> </p>
+  </c:if>
+</c:forEach>
+    <sf:input path="name" class="form-control form-control-sm" placeholder="New name"/>
+
     <sf:errors path="name" />
   </div>
   <button type="submit" class="btn btn-primary">Update</button>

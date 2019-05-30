@@ -69,4 +69,10 @@ public class JdbcSexRepository implements SexRepository {
 	public void delete(Sex sex) {
 	    jdbc.update("DELETE  FROM sex WHERE id=?",sex.getId());
 	}
+
+	@Override
+	public Sex findOne(String id) {
+		
+		return jdbc.queryForObject("SELECT id,name FROM sex WHERE id="+id+"", this::mapRowToSex);
+	}
 }

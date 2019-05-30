@@ -46,6 +46,13 @@ public interface SexRepository {
      * values to assign to any query parameters. Query has one parameter.
      * </strong>
      */
+    /***
+     * @author Josip Bošnjak
+     * @since 30.5.2019 17:30
+     * @param id
+     * @return one sex record based on id
+     */
+    Sex findOne(String id);
     Sex save(Sex sex);
     /***
      * @author Josip Bošnjak

@@ -6,11 +6,13 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -73,6 +75,24 @@ public class TemplateController {
 	public List<Sex> findSexData(List<Sex> sex){
         sexRepository.findAll().forEach(i->sex.add(i));
         return sex;
+	}
+	/***
+	 * @author Josip Bošnjak
+	 * @since 30.5.2019 17:47
+	 * @param o any object of any class
+	 * @param id id for finding a record in database
+	 * @return list if there is a instance classes
+	 * <strong>Since when we are updating values, there is no values to
+	 * update when user click update and then there in no entry in new name.
+	 * This function receives an object, which is instance one of our 5
+	 * classes, and then returning a list which will be added to the model.</strong> 
+	 */
+	public List<Object> addToList(Object o, String id){
+		List<Object> objectList = new ArrayList<>();
+		if(o instanceof Sex) {
+		   objectList.add(sexRepository.findOne(id));	
+		}
+		return objectList;
 	}
 	 @GetMapping({"/", "/template"})
 	    public String template(Model model) {
@@ -138,13 +158,15 @@ public class TemplateController {
 	  * @return redirect to template after successfully update of record.
 	  */
 	 @PostMapping("/template/updateSex")
-	 public String updateSex(@Valid Sex sex, Errors errors) {
+	 public String updateSex(@Valid Sex sex, Errors errors,Model model) {
          if(errors.hasErrors()) {
+        	 model.addAttribute("se", addToList(sex, sex.getId().toString()));
         	 return template;
          }
          sexRepository.update(sex);
 		 return redirect;
 	 }
+	
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 25.5.2019 17:16
