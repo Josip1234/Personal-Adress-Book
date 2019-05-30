@@ -24,6 +24,5 @@ private String street;
 @NotBlank(message="{fields.required}")
 @Size(min=1,max=5,message="{address.street.number}")
 private String street_no;
-@NotBlank(message="{fields.required}")
 private Long city_id;
 }

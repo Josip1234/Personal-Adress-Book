@@ -32,8 +32,8 @@ private String phone;
 @Email(message = "{email.validation}")
 @Size(max=50,message= "{email.size}")
 private String email;
-@NotBlank(message="{fields.required}")
+
 private Long sex_id;
-@NotBlank(message="{fields.required}")
+
 private Long address_id;
 }

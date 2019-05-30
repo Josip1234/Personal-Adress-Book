@@ -119,7 +119,7 @@ public class TemplateController {
 		 if(errors.hasErrors()) {
 			  
 			  
-			  return "template";
+			  return template;
 		 }
 		 sexRepository.save(sex);
 			 
@@ -138,10 +138,10 @@ public class TemplateController {
 	  * @return redirect to template after successfully update of record.
 	  */
 	 @PostMapping("/template/updateSex")
-	 public String updateSex(@RequestParam("id")Long id,@RequestParam("name") String name) {
-         Sex sex=new Sex();
-         sex.setId(id);
-         sex.setName(name);
+	 public String updateSex(@Valid Sex sex, Errors errors) {
+         if(errors.hasErrors()) {
+        	 return template;
+         }
          sexRepository.update(sex);
 		 return redirect;
 	 }
@@ -174,6 +174,10 @@ public class TemplateController {
 	  * Because your controller is annotated with @SessionAttributes("user") the model will be stored in session the first time it has been created. Subsequent requests will pull the model from session.
 	  * @return
 	  */
+	 @ModelAttribute("sex")
+	 public Sex createSex() {
+	     return new Sex();
+	 }
 	 @ModelAttribute("country")
 	 public Country createCountry() {
 	     return new Country();
@@ -209,12 +213,10 @@ public class TemplateController {
 	  * @return redirect if country is successfully updated
 	  */
 	 @PostMapping("/template/updateCountry")
-	 public String updateCountry(@RequestParam("id") Long id,@RequestParam("name")String name,@RequestParam("alpha_2")String alpha_2,@RequestParam("alpha_3")String alpha_3) {
-		 Country country=new Country();
-		 country.setId(id);
-		 country.setName(name);
-		 country.setAlpha_2(alpha_2);
-		 country.setAlpha_3(alpha_3);
+	 public String updateCountry(@Valid Country country,Errors errors) {
+		 if(errors.hasErrors()) {
+			 return template;
+		 }
 		 countries.update(country);
 		 return redirect;
 	 }
@@ -240,11 +242,10 @@ public class TemplateController {
 	  * @return redirect if successfuly inserted city
 	  */
 	 @PostMapping("/template/insertCity")
-	 public String insertCity(@RequestParam("name")String name, @RequestParam("zip_code")String zip_code, @RequestParam("country_id")Long country_id) {
-		 City city=new City();
-		 city.setName(name);
-		 city.setZip_code(zip_code);
-		 city.setCountry_id(country_id);
+	 public String insertCity(@Valid City city,Errors errors) {
+		 if(errors.hasErrors()) {
+			 return template;
+		 }
 		 cityRepository.save(city);
 		 return redirect;
 	 }
@@ -258,12 +259,10 @@ public class TemplateController {
 	  * @return redirect if city is successfully updated
 	  */
 	 @PostMapping("/template/updateCity")
-	 public String updateCity(@RequestParam("id")Long id,@RequestParam("name")String name, @RequestParam("zip_code")String zip_code, @RequestParam("country_id")Long country_id ) {
-		 City city=new City();
-		 city.setId(id);
-		 city.setName(name);
-		 city.setZip_code(zip_code);
-		 city.setCountry_id(country_id);
+	 public String updateCity(@Valid City city, Errors errors) {
+		 if(errors.hasErrors()) {
+			 return template;
+		 }
 		 cityRepository.update(city);
 		 return redirect;
 	 }
@@ -289,12 +288,11 @@ public class TemplateController {
 	  * @return redirect if successfully inserted data into the table
 	  */
 	 @PostMapping("/template/insertAddress")
-	 public String insertAddress(@RequestParam("street")String street, @RequestParam("street_no")String street_no, @RequestParam("city_id")Long city_id) {
-		 Address adress=new Address();
-		 adress.setStreet(street);
-		 adress.setStreet_no(street_no);
-		 adress.setCity_id(city_id);
-		 addressRepository.save(adress);
+	 public String insertAddress(@Valid Address address, Errors errors) {
+		 if(errors.hasErrors()) {
+			 return template;
+		 }
+		 addressRepository.save(address);
 		 return redirect;
 	 }
 	 /***
@@ -307,12 +305,10 @@ public class TemplateController {
 	  * @return redirect if update was successful
 	  */
 	 @PostMapping("/template/updateAddress")
-	 public String updateAddress(@RequestParam("id")Long id,@RequestParam("street")String street, @RequestParam("street_no")String street_no, @RequestParam("city_id")Long city_id) {
-		 Address address = new Address();
-		 address.setId(id);
-		 address.setStreet(street);
-		 address.setStreet_no(street_no);
-		 address.setCity_id(city_id);
+	 public String updateAddress(@Valid Address address, Errors errors) {
+		 if(errors.hasErrors()) {
+			 return template;
+		 }
 		 addressRepository.update(address);
 		 return redirect;
 	 }
@@ -341,14 +337,10 @@ public class TemplateController {
 	  * @return redirect if data has been successfully saved into the database
 	  */
 	 @PostMapping("/template/insertContact")
-	 public String insertContact(@RequestParam("first_name")String first_name,@RequestParam("last_name")String last_name, @RequestParam("phone")String phone,@RequestParam("email")String email, @RequestParam("sex_id")Long sex_id, @RequestParam("address_id")Long address_id) {
-		 Contact contact=new Contact();
-		 contact.setFirst_name(first_name);
-		 contact.setLast_name(last_name);
-		 contact.setPhone(phone);
-		 contact.setEmail(email);
-		 contact.setSex_id(sex_id);
-		 contact.setAddress_id(address_id);
+	 public String insertContact(@Valid Contact contact, Errors errors) {
+		 if(errors.hasErrors()) {
+			 return template;
+		 }
 		 contactRepository.save(contact);
 		 return redirect;
 	 }
@@ -365,15 +357,10 @@ public class TemplateController {
 	  * @return redirect if data has been updated.
 	  */
 	 @PostMapping("/template/updateContact")
-	 public String updateContact(@RequestParam("id")Long id, @RequestParam("first_name")String first_name,@RequestParam("last_name")String last_name, @RequestParam("phone")String phone,@RequestParam("email")String email, @RequestParam("sex_id")Long sex_id, @RequestParam("address_id")Long address_id ) {
-		 Contact contact=new Contact();
-		 contact.setId(id);
-		 contact.setFirst_name(first_name);
-		 contact.setLast_name(last_name);
-		 contact.setPhone(phone);
-		 contact.setEmail(email);
-		 contact.setSex_id(sex_id);
-		 contact.setAddress_id(address_id);
+	 public String updateContact(@Valid Contact contact, Errors errors) {
+		 if(errors.hasErrors()) {
+			 return template;
+		 }
 		 contactRepository.update(contact);
 		 return redirect;
 	 }

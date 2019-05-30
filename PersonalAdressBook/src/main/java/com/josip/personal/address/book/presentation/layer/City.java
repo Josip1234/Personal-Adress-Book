@@ -25,7 +25,7 @@ private String name;
 @NotBlank(message="{fields.required}")
 @Size(min=1, max=10, message="{city.zip.size}")
 private String zip_code;
-@NotBlank(message="{fields.required}")
+
 private Long country_id;
 
 }

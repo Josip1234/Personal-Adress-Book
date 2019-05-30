@@ -19,13 +19,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Country {
 private Long id;
-@NotBlank
+@NotBlank(message= "{fields.required}")
 @Size(min=1, max=50, message="{country.name.size}")
 private String name;
-@NotBlank
+@NotBlank(message= "{fields.required}")
 @Size(min=1, max=2, message="{country.size.alpha}")
 private String alpha_2;
-@NotBlank
+@NotBlank(message= "{fields.required}")
 @Size(min=1, max=3, message="{country.size.alpha}")
 private String alpha_3;
 
