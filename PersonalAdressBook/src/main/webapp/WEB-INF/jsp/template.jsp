@@ -84,6 +84,7 @@
   </div>
   <div class="form-group">
     <sf:input path="name" class="form-control form-control-sm" placeholder="New name"  />
+    <sf:errors path="name" />
   </div>
   <button type="submit" class="btn btn-primary">Update</button>
   <button  type="button" class="btn btn-danger" onclick="abort()">Abort update</button>
@@ -182,12 +183,15 @@
   </div>
   <div class="form-group">
     <sf:input path="name" class="form-control form-control-sm" placeholder="New country name"  />
+    <sf:errors path="name" />
   </div>
   <div class="form-group">
     <sf:input path="alpha_2" class="form-control form-control-sm" placeholder="New alpha_2"  />
+    <sf:errors path="alpha_2" />
   </div>
   <div class="form-group">
     <sf:input path="alpha_3" class="form-control form-control-sm" placeholder="New alpha_3"  />
+    <sf:errors path="alpha_3" />
   </div>
   <button type="submit" class="btn btn-primary">Update country</button>
   <button  type="button" class="btn btn-danger" onclick="abort()">Abort update</button>
@@ -263,11 +267,12 @@
   <div class="form-group">
 
     <sf:input path="name" class="form-control form-control-sm" placeholder="City name" />
-
+    <sf:errors path="name" />
 
   </div>
   <div class="form-group">
     <sf:input path="zip_code" class="form-control form-control-sm" placeholder="City zip code"/>
+    <sf:errors path="zip_code" />
   </div>
   <div class="form-group">
     <sf:select path="country_id" class="form-control form-control-sm">
@@ -299,9 +304,11 @@
     </div>
     <div class="form-group">
       <sf:input path="name" class="form-control form-control-sm" placeholder="New city name"  />
+      <sf:errors path="name" />
     </div>
     <div class="form-group">
       <sf:input path="zip_code" class="form-control form-control-sm" placeholder="New zip code"  />
+      <sf:errors path="zip_code" />
     </div>
     <div class="form-group">
       <sf:select path="country_id" class="form-control form-control-sm">
@@ -387,11 +394,12 @@
   <div class="form-group">
 
     <sf:input path="street" class="form-control form-control-sm" placeholder="Street name" />
-
+    <sf:errors path="street" />
 
   </div>
   <div class="form-group">
     <sf:input path="street_no" class="form-control form-control-sm" placeholder="Street number"/>
+    <sf:errors path="street_no" />
   </div>
   <div class="form-group">
     <sf:select path="city_id" class="form-control form-control-sm">
@@ -423,9 +431,11 @@
     </div>
     <div class="form-group">
       <sf:input path="street" class="form-control form-control-sm" placeholder="New street name"  />
+      <sf:errors path="street" />
     </div>
     <div class="form-group">
       <sf:input path="street_no" class="form-control form-control-sm" placeholder="New street number"  />
+      <sf:errors path="street_no" />
     </div>
     <div class="form-group">
       <sf:select path="city_id" class="form-control form-control-sm">
@@ -542,15 +552,19 @@
 <div class="form-group">
 
   <sf:input path="first_name" class="form-control form-control-sm" placeholder="First name" />
+  <sf:errors path="first_name" />
 </div>
 <div class="form-group">
   <sf:input path="last_name" class="form-control form-control-sm" placeholder="Last name" />
+  <sf:errors path="last_name" />
 </div>
 <div class="form-group">
   <sf:input path="phone" class="form-control form-control-sm" placeholder="Phone" />
+  <sf:errors path="phone" />
 </div>
 <div class="form-group">
   <sf:input path="email" class="form-control form-control-sm" placeholder="Email" />
+  <sf:errors path="email" />
 </div>
 <div class="form-group">
   <sf:select path="sex_id" class="form-control form-control-sm">
@@ -605,15 +619,19 @@
     </div>
   <div class="form-group">
     <sf:input path="first_name" class="form-control form-control-sm" placeholder="First name" />
+    <sf:errors path="first_name" />
 </div>
 <div class="form-group">
   <sf:input path="last_name" class="form-control form-control-sm" placeholder="Last name" />
+  <sf:errors path="last_name" />
 </div>
 <div class="form-group">
   <sf:input path="phone" class="form-control form-control-sm" placeholder="Phone" />
+  <sf:errors path="phone" />
 </div>
 <div class="form-group">
   <sf:input path="email" class="form-control form-control-sm" placeholder="Email" />
+  <sf:errors path="email" />
 </div>
 <div class="form-group">
   <sf:select path="sex_id" class="form-control form-control-sm">
