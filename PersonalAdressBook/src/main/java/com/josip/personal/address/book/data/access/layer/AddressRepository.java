@@ -15,6 +15,7 @@ public interface AddressRepository {
 	 * @return list of all adresses
 	 */
 Iterable<Address> findAll();
+Address findOne(String id);
 /***
  * 
  * @param address

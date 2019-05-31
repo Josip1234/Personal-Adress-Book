@@ -47,5 +47,10 @@ public class JdbcCityRepository implements CityRepository {
 	 jdbc.update("DELETE FROM city WHERE id=?",city.getId());
 
 	}
+	@Override
+	public City findOne(String id) {
+		
+		return jdbc.queryForObject("SELECT id,name,zip_code,country_id FROM city WHERE id="+id+"", this::mapRowToCity);
+	}
 
 }

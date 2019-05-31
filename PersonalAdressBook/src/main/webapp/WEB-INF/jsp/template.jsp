@@ -84,12 +84,13 @@
 
   </div>
   <div class="form-group">
-
+<!--
     <c:forEach items="${se}" var="sex" varStatus="status">
   <c:if test='${fn:length(se) == 1 }'>
       <p>Current value: <c:out value='${sex.name}'/> </p>
   </c:if>
 </c:forEach>
+-->
     <sf:input path="name" class="form-control form-control-sm" placeholder="New name"/>
 
     <sf:errors path="name" />

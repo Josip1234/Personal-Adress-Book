@@ -51,5 +51,10 @@ public class JdbcContactRepository implements ContactRepository{
 		jdbc.update("DELETE FROM contact WHERE id=?",contact.getId());
 		
 	}
+	@Override
+	public Contact findOne(String id) {
+		
+		return jdbc.queryForObject("SELECT id, first_name,last_name,phone,email,sex_id,address_id FROM contact WHERE id="+id+"", this::mapRowToContact);
+	}
 
 }

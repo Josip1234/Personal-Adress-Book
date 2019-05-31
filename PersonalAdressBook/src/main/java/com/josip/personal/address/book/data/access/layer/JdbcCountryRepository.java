@@ -48,5 +48,9 @@ public class JdbcCountryRepository implements CountryRepository {
 		jdbc.update("DELETE FROM country WHERE id=?", country.getId());
 
 	}
+	@Override
+	public Country findOne(String id) {
+		return jdbc.queryForObject("SELECT id,name,alpha_2,alpha_3 FROM country WHERE id="+id+"", this::mapRowToCountry);
+	}
 
 }

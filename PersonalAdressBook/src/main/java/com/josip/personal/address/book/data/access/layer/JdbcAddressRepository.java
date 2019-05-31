@@ -46,5 +46,10 @@ public class JdbcAddressRepository implements AddressRepository {
 		jdbc.update("DELETE FROM address WHERE id=?", address.getId());
 
 	}
+	@Override
+	public Address findOne(String id) {
+		
+		return jdbc.queryForObject("SELECT id, street, street_no, city_id FROM address WHERE id="+id+"", this::mapRowToAddress);
+	}
 
 }

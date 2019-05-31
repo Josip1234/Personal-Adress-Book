@@ -15,6 +15,7 @@ public interface ContactRepository {
 	 * @return list of contacts
 	 */
 Iterable<Contact> findAll();
+Contact findOne(String id);
 /***
  * 
  * @param contact

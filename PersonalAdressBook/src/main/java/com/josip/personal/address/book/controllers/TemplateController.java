@@ -76,6 +76,14 @@ public class TemplateController {
         sexRepository.findAll().forEach(i->sex.add(i));
         return sex;
 	}
+	public List<Country> findAllCountries(List<Country> country){
+		countries.findAll().forEach(c->country.add(c));
+		return country;
+	}
+	public List<City> findAllCities(List<City> city){
+		cityRepository.findAll().forEach(cit->city.add(cit));
+		return city;
+	}
 	/***
 	 * @author Josip Bošnjak
 	 * @since 30.5.2019 17:47
@@ -91,6 +99,14 @@ public class TemplateController {
 		List<Object> objectList = new ArrayList<>();
 		if(o instanceof Sex) {
 		   objectList.add(sexRepository.findOne(id));	
+		}else if(o instanceof Country) {
+			objectList.add(countries.findOne(id));
+		}else if(o instanceof City) {
+			objectList.add(cityRepository.findOne(id));
+		}else if(o instanceof Address) {
+			objectList.add(addressRepository.findOne(id));
+		}else if(o instanceof Contact) {
+			objectList.add(contactRepository.findOne(id));
 		}
 		return objectList;
 	}
@@ -103,12 +119,12 @@ public class TemplateController {
 	        model.addAttribute(new Sex());
 	        
 	        List<Country> country = new ArrayList<>();
-	        countries.findAll().forEach(c->country.add(c));
+	        country=findAllCountries(country);
 	        model.addAttribute("countryList",country);
 	        model.addAttribute(new Country());
 	        
 	        List<City> city=new ArrayList<>();
-	        cityRepository.findAll().forEach(ci->city.add(ci));          
+	        city=findAllCities(city);        
 	        model.addAttribute("cities", city);
 	        model.addAttribute(new City());
 	        
@@ -235,8 +251,9 @@ public class TemplateController {
 	  * @return redirect if country is successfully updated
 	  */
 	 @PostMapping("/template/updateCountry")
-	 public String updateCountry(@Valid Country country,Errors errors) {
+	 public String updateCountry(@Valid Country country,Errors errors,Model model) {
 		 if(errors.hasErrors()) {
+			 model.addAttribute("countryList",addToList(country,country.getId().toString()));
 			 return template;
 		 }
 		 countries.update(country);
@@ -281,8 +298,11 @@ public class TemplateController {
 	  * @return redirect if city is successfully updated
 	  */
 	 @PostMapping("/template/updateCity")
-	 public String updateCity(@Valid City city, Errors errors) {
+	 public String updateCity(@Valid City city, Errors errors, Model model) {
 		 if(errors.hasErrors()) {
+			 List<Country> country=new ArrayList<>();
+			 model.addAttribute("cities", addToList(city,city.getId().toString()));
+			 model.addAttribute("countryList",findAllCountries(country));
 			 return template;
 		 }
 		 cityRepository.update(city);
@@ -327,8 +347,13 @@ public class TemplateController {
 	  * @return redirect if update was successful
 	  */
 	 @PostMapping("/template/updateAddress")
-	 public String updateAddress(@Valid Address address, Errors errors) {
+	 public String updateAddress(@Valid Address address, Errors errors, Model model) {
 		 if(errors.hasErrors()) {
+			 List<City> city=new ArrayList<>();
+			 List<Country> country=new ArrayList<>(); 
+			 model.addAttribute("countryList",findAllCountries(country));
+		     model.addAttribute("cities", findAllCities(city));
+			 model.addAttribute("addr",addToList(address,address.getId().toString()));
 			 return template;
 		 }
 		 addressRepository.update(address);
@@ -379,8 +404,9 @@ public class TemplateController {
 	  * @return redirect if data has been updated.
 	  */
 	 @PostMapping("/template/updateContact")
-	 public String updateContact(@Valid Contact contact, Errors errors) {
+	 public String updateContact(@Valid Contact contact, Errors errors,Model model) {
 		 if(errors.hasErrors()) {
+			 model.addAttribute("conta",addToList(contact, contact.getId().toString()));
 			 return template;
 		 }
 		 contactRepository.update(contact);

@@ -13,6 +13,7 @@ public interface CityRepository {
 	 * @return list of cities
 	 */
 Iterable<City> findAll();
+City findOne(String id);
 /***
  * 
  * @param city object
