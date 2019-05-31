@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE HTML>
 <head>
 <meta charset="utf-8">
@@ -70,8 +71,10 @@
 <div class="col-sm-4">
   <h2>Operations:</h2>
 <button onclick="addNewSex()" type="button" class="btn btn-lg btn-block btn-outline-success">Add sex</button>
+<sec:authorize access="hasRole('ADMIN')">
 <button onclick="updateSex()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update sex</button>
 <button onclick="deleteSex()" type="button" class="btn btn-lg btn-block btn-outline-danger">Delete sex</button>
+</sec:authorize>
 </div>
 </div>
 <div class="row">
@@ -172,8 +175,10 @@
 <div class="col-sm-4">
   <h2>Operations:</h2>
 <button onclick="insertCountry()" type="button" class="btn btn-lg btn-block btn-outline-success">Add country</button>
+<sec:authorize access="hasRole('ADMIN')">
 <button onclick="updateCountry()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update country</button>
 <button onclick="deleteCountry()" type="button" class="btn btn-lg btn-block btn-outline-danger">Delete country</button>
+</sec:authorize>
 </div>
 </div>
 <div class="row">
@@ -287,8 +292,10 @@
   <div class="col-sm-4">
     <h2>Operations:</h2>
   <button onclick="insertCity()" type="button" class="btn btn-lg btn-block btn-outline-success">Add city</button>
+  <sec:authorize access="hasRole('ADMIN')">
   <button onclick="updateCity()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update city</button>
   <button onclick="deleteCity()" type="button" class="btn btn-lg btn-block btn-outline-danger">Delete city</button>
+  </sec:authorize>
   </div>
 </div>
 <div class="row">
@@ -415,7 +422,9 @@
     <h2>Operations:</h2>
   <button onclick="insertAddress()" type="button" class="btn btn-lg btn-block btn-outline-success">Add new address</button>
   <button onclick="updateAddress()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update address</button>
+
   <button onclick="deleteAddress()"type="button" class="btn btn-lg btn-block btn-outline-danger">Delete address</button>
+
   </div>
 </div>
 <div class="row">
