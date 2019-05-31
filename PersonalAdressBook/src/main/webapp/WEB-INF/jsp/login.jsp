@@ -12,6 +12,7 @@
     <script src="<c:url value="/resources/js/myjavascript.js" />"></script>
   </head>
   <body>
+
     <div id="container">
       <div id="row">
         <div class="col-sm-8">
@@ -24,7 +25,7 @@
 
   </div>
   <div class="form-group">
-  
+
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
   <button type="submit" class="btn btn-primary">Login</button>
