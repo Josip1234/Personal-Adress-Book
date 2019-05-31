@@ -84,6 +84,10 @@ public class TemplateController {
 		cityRepository.findAll().forEach(cit->city.add(cit));
 		return city;
 	}
+	public List<Address> findAllTheAddress(List<Address> address){
+		addressRepository.findAll().forEach(adr->address.add(adr));
+		return address;
+	}
 	/***
 	 * @author Josip Bošnjak
 	 * @since 30.5.2019 17:47
@@ -129,7 +133,7 @@ public class TemplateController {
 	        model.addAttribute(new City());
 	        
 	        List<Address> address=new ArrayList<>();
-	        addressRepository.findAll().forEach(ad->address.add(ad));
+	        address=findAllTheAddress(address);
 	        model.addAttribute("addr",address);
 	        model.addAttribute(new Address());
 	        
@@ -406,6 +410,14 @@ public class TemplateController {
 	 @PostMapping("/template/updateContact")
 	 public String updateContact(@Valid Contact contact, Errors errors,Model model) {
 		 if(errors.hasErrors()) {
+			 List<Sex> sex=new ArrayList<>();
+			 List<Country> count=new ArrayList<>();
+			 List<City> city=new ArrayList<>();
+			 List<Address> address=new ArrayList<>();
+		     model.addAttribute("addr",findAllTheAddress(address));
+			 model.addAttribute("cities", findAllCities(city));
+			 model.addAttribute("countryList",findAllCountries(count));
+			 model.addAttribute("se",findSexData(sex));
 			 model.addAttribute("conta",addToList(contact, contact.getId().toString()));
 			 return template;
 		 }
