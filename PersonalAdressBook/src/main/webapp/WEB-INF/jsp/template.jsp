@@ -3,6 +3,7 @@
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML>
 <head>
+<meta charset="utf-8">
 <title>Personal adress book</title>
 <link rel="stylesheet" href="<c:url value="/resources/bootstrap-4.3.1/css/bootstrap.css" />" >
 <script src="<c:url value="/resources/jquery/jquery-3.4.1.min.js" />"></script>
