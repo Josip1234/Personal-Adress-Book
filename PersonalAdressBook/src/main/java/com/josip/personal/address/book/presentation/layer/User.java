@@ -34,6 +34,6 @@ public class User {
 	@Size(min=1,max=20,message= "{role}")
 	private String role;
 	
-	
+
 
 }
