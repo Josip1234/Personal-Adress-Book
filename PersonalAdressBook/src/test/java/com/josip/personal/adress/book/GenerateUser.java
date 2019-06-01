@@ -89,7 +89,11 @@ public class GenerateUser {
 		user=generateFakeUser(input());
 		printFakeUsers(user);
 	    System.out.println(saveDataToFile(user));
-	   
+	    String insertIntoDatabase="INSERT INTO users(firstName,lastName,age,email,password,role) VALUES();";
+		String location="src/main/resources/db/migration/";
+		String fileName="V4__userdata";
+		String fileExtension="."+"sql";
+		String link=location+fileName+fileExtension;
 		
 		
 
