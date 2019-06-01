@@ -87,6 +87,11 @@
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-taglibs</artifactId>
 </dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>0.17.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
