@@ -1,10 +1,7 @@
 package com.josip.personal.adress.book;
 
-import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOError;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import javax.sound.midi.Soundbank;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.github.javafaker.Faker;
 import com.josip.personal.address.book.presentation.layer.User;
@@ -82,18 +79,37 @@ public class GenerateUser {
     
     	return saved;
     }
+    public static List<User> encodePassword(List<User> list){
+    	List<User> lista=new ArrayList<>();
+    	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    	for (User user : list) {
+			user.setPassword(encoder.encode(user.getPassword()));
+			lista.add(user);
+		}
+    	return lista;
+    }
+    public static void saveToMigrations(String link, List<User> users) throws FileNotFoundException {
+    	PrintWriter printWriter;
+    	printWriter = new PrintWriter(new FileOutputStream(link,true));
+    	for (User user : users) {
+    		String insertIntoDatabase="INSERT INTO users(firstName,lastName,age,email,password,role) VALUES('"+user.getFirstName()+"','"+user.getLastName()+"',"+user.getAge()+",'"+user.getEmail()+"','"+user.getPassword()+"','"+user.getRole()+"');";
+    		printWriter.println(insertIntoDatabase);
+		}
+    	printWriter.close();
+    	
+    }
   
     
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		List<User> user = new ArrayList<>();
 		user=generateFakeUser(input());
-		printFakeUsers(user);
-	    System.out.println(saveDataToFile(user));
-	    String insertIntoDatabase="INSERT INTO users(firstName,lastName,age,email,password,role) VALUES();";
+		saveDataToFile(user);
+	    user=encodePassword(user);
 		String location="src/main/resources/db/migration/";
 		String fileName="V4__userdata";
 		String fileExtension="."+"sql";
 		String link=location+fileName+fileExtension;
+		saveToMigrations(link,user);
 		
 		
 
