@@ -1,8 +1,18 @@
 package com.josip.personal.adress.book;
 
+import java.io.EOFException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOError;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+
+import javax.sound.midi.Soundbank;
 
 import com.github.javafaker.Faker;
 import com.josip.personal.address.book.presentation.layer.User;
@@ -46,17 +56,42 @@ public class GenerateUser {
 	}
 	public static int input() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("How many items you want to generate?");
+		System.out.println("Input number how many users you want to generate:");
 		int number=scanner.nextInt();
 		scanner.close();
 		return number;
 	}
 	
-
+    public static boolean saveDataToFile(List<User> users) {
+    	boolean saved=false;
+    	Map<String, String> map = new HashMap<String, String>();
+    	for (User user2 : users) {
+			map.put(user2.getEmail(), user2.getPassword());
+		}
+    	
+    	PrintWriter printWriter;
+		try {
+			printWriter = new PrintWriter(new FileOutputStream("src/test/java/users.json",true));
+			printWriter.println(map);
+	    	printWriter.close();
+	    	saved=true;
+		} catch (FileNotFoundException e) {
+			saved=false;
+			
+		}
+    
+    	return saved;
+    }
+  
+    
 	public static void main(String[] args) {
 		List<User> user = new ArrayList<>();
 		user=generateFakeUser(input());
 		printFakeUsers(user);
+	    System.out.println(saveDataToFile(user));
+	   
+		
+		
 
 	}
 
