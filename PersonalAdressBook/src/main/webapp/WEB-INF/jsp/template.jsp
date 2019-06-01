@@ -71,7 +71,7 @@
 <div class="col-sm-4">
   <h2>Operations:</h2>
 <button onclick="addNewSex()" type="button" class="btn btn-lg btn-block btn-outline-success">Add sex</button>
-<sec:authorize access="hasRole('ADMIN')">
+<sec:authorize access="hasAuthority('ADMIN')">
 <button onclick="updateSex()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update sex</button>
 <button onclick="deleteSex()" type="button" class="btn btn-lg btn-block btn-outline-danger">Delete sex</button>
 </sec:authorize>
@@ -175,7 +175,7 @@
 <div class="col-sm-4">
   <h2>Operations:</h2>
 <button onclick="insertCountry()" type="button" class="btn btn-lg btn-block btn-outline-success">Add country</button>
-<sec:authorize access="hasRole('ADMIN')">
+<sec:authorize access="hasAuthority('ADMIN')">
 <button onclick="updateCountry()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update country</button>
 <button onclick="deleteCountry()" type="button" class="btn btn-lg btn-block btn-outline-danger">Delete country</button>
 </sec:authorize>
@@ -292,7 +292,7 @@
   <div class="col-sm-4">
     <h2>Operations:</h2>
   <button onclick="insertCity()" type="button" class="btn btn-lg btn-block btn-outline-success">Add city</button>
-  <sec:authorize access="hasRole('ADMIN')">
+  <sec:authorize access="hasAuthority('ADMIN')">
   <button onclick="updateCity()" type="button" class="btn btn-lg btn-block btn-outline-primary">Update city</button>
   <button onclick="deleteCity()" type="button" class="btn btn-lg btn-block btn-outline-danger">Delete city</button>
   </sec:authorize>
