@@ -13,6 +13,7 @@
 <div class="jumbotron text-center">
   <h1>Personal address book</h1>
   <p>Remembers your contacts while you alive!!!</p>
+  <p>Already registered? Click <a href="<c:url value="/login" />">Login</a>  to login.</p>
 
 
 

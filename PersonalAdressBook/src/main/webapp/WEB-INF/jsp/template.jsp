@@ -32,10 +32,7 @@
         <li class="nav-item">
           <a class="nav-link" href="<c:url value="/logout" />">Logout</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<c:url value="/registration" />">Registration</a>
-        </li>
-
+        
       </ul>
     </div>
   </nav>

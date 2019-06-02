@@ -112,7 +112,11 @@ public class TemplateController {
 		}
 		return objectList;
 	}
-	 @GetMapping({"/", "/template"})
+	@GetMapping({"/","/registration"})
+	public String getRegistrationForm() {
+		return "registration";
+	}
+	 @GetMapping({"/template"})
 	    public String template(Model model) {
 			List<Sex> sex = new ArrayList<>();
             sex=findSexData(sex);
