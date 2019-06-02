@@ -12,13 +12,18 @@ import com.josip.personal.address.book.presentation.layer.Address;
 public interface AddressRepository {
 	/***
 	 * 
-	 * @return list of all adresses
+	 * @return list of all addresses
 	 */
 Iterable<Address> findAll();
+/***
+ * 
+ * @param id what address to find with specified id
+ * @return one address
+ */
 Address findOne(String id);
 /***
  * 
- * @param address
+ * @param address object
  * @return adress object
  */
 Address save(Address address);

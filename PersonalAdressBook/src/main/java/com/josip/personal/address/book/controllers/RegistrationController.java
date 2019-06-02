@@ -16,11 +16,19 @@ import com.josip.personal.address.book.presentation.layer.User;
 public class RegistrationController {
 	private UserRepository userRepository;
 	
+	/***
+	 * @author Josip Bošnjak
+	 * @param userRepository repository which saves user data to the database
+	 */
 	@Autowired
 	public RegistrationController(UserRepository userRepository) {
 		this.userRepository=userRepository;
 	}
 	
+	/***
+	 * 
+	 * @return Bycript encrypted password
+	 */
 	 @Bean
 	  public BCryptPasswordEncoder passwordEncoder() {
 	  return new BCryptPasswordEncoder();
@@ -28,6 +36,12 @@ public class RegistrationController {
 	 
 	 
 
+	 /***
+	  * @author Josip Bošnjak
+	  * @param user 
+	  * @param errors
+	  * @return login if there is no errors else return form with displayed errors
+	  */
 	@PostMapping("/register/registerUser")
 	public String register(@Valid User user, Errors errors ) {
 		BCryptPasswordEncoder encoder = passwordEncoder();

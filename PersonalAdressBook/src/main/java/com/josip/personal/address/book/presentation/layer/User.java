@@ -9,7 +9,11 @@ import org.springframework.lang.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/***
+ * 
+ * @author Josip Bošnjak
+ *
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

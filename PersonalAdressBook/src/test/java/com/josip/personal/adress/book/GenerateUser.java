@@ -19,12 +19,22 @@ public class GenerateUser {
 	static String[] roles=new String[] {"ADMIN","USER"};
 	static String[] email=new String[] {"hotmail","gmail","unipu","efpu"};
 	
+	/***
+	 * @author Josip Bošnjak
+	 * @param number number to check
+	 * @return true if number is add
+	 */
 	public static boolean addNumber(int number) {
 		boolean isTrue=false;
 		if(number%2==0) isTrue=true;
 		else isTrue=false;
 		return isTrue;
 	}
+	/***
+	 * @author Josip Bošnjak
+	 * @param number how many data you will generate
+	 * @return list of generated data
+	 */
 	public static List<User> generateFakeUser(int number){
 		List<User> userList=new ArrayList<>();
 		
@@ -46,11 +56,19 @@ public class GenerateUser {
 		}
 		return userList;
 	}
+	/***
+	 * 
+	 * @param users receive list of users
+	 */
 	public static void printFakeUsers(List<User> users) {
 		for (User user : users) {
 			System.out.println(user);
 		}
 	}
+	/***
+	 * @author Josip Bošnjak
+	 * @return number of input data from keyboard
+	 */
 	public static int input() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Input number how many users you want to generate:");
@@ -58,7 +76,11 @@ public class GenerateUser {
 		scanner.close();
 		return number;
 	}
-	
+	/***
+	 * @author Josip Bošnjak
+	 * @param users receive list of users
+	 * @return true if test data is saved to the file false if not
+	 */
     public static boolean saveDataToFile(List<User> users) {
     	boolean saved=false;
     	Map<String, String> map = new HashMap<String, String>();
@@ -79,6 +101,11 @@ public class GenerateUser {
     
     	return saved;
     }
+    /***
+     * @author Josip Bošnjak
+     * @param list receive List of users 
+     * @return encoded password
+     */
     public static List<User> encodePassword(List<User> list){
     	List<User> lista=new ArrayList<>();
     	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -88,6 +115,12 @@ public class GenerateUser {
 		}
     	return lista;
     }
+    /**
+     * @author Josip Bošnjak
+     * @param link location where to save data
+     * @param users recieve list of users
+     * @throws FileNotFoundException 
+     */
     public static void saveToMigrations(String link, List<User> users) throws FileNotFoundException {
     	PrintWriter printWriter;
     	printWriter = new PrintWriter(new FileOutputStream(link,true));

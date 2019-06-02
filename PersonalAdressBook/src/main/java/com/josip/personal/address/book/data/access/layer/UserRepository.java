@@ -9,5 +9,9 @@ import com.josip.personal.address.book.presentation.layer.User;
  *
  */
 public interface UserRepository {
+	/***
+	 * 
+	 * @param user object which will be used to be saved into the database.
+	 */
 public void register(User user);
 }

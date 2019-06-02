@@ -64,21 +64,31 @@ public class TemplateController {
 		this.addressRepository=addressRepository;
 		this.contactRepository=contactRepository;
 	}
-	/***
-	 * @author Josip Bošnjak
-	 * @since 24.5.2019. 14:10
-	 * @param model
-	 * @return view template with generated form for insert new sex, country, city
-	 */
-
+	
+    /***
+     * @author Josip Bošnjak
+     * @param sex
+     * @return list of sex from data repository
+     */
 	public List<Sex> findSexData(List<Sex> sex){
         sexRepository.findAll().forEach(i->sex.add(i));
         return sex;
 	}
+	/**
+	 * 
+	 * @param country
+	 * @return list of countries and their alpha codes from repository
+	 */
 	public List<Country> findAllCountries(List<Country> country){
 		countries.findAll().forEach(c->country.add(c));
 		return country;
 	}
+	
+	/**
+	 * 
+	 * @param city
+	 * @return list of cities and their zip codes from repository
+	 */
 	public List<City> findAllCities(List<City> city){
 		cityRepository.findAll().forEach(cit->city.add(cit));
 		return city;
@@ -113,11 +123,21 @@ public class TemplateController {
 		}
 		return objectList;
 	}
+	/***
+	 * 
+	 * @param model
+	 * @return link where registration form is
+	 */
 	@GetMapping({"/","/registration"})
 	public String getRegistrationForm(Model model) {
 		model.addAttribute("user",new User());
 		return "registration";
 	}
+	/**
+	 * 
+	 * @param model
+	 * @return user interface view
+	 */
 	 @GetMapping({"/template"})
 	    public String template(Model model) {
 			List<Sex> sex = new ArrayList<>();
@@ -153,7 +173,7 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 25.5.2019 13:46
-	  * @param name sex name
+	  * @param sex object data sent from form from view
 	  * @return redirect link to template since insertSex jsp does not exists
 	  * if model validation is valid insert record into the database 
 	  */
@@ -177,8 +197,7 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 25.5.2019 15:00
-	  * @param id
-	  * @param name
+	  * @param sex object 
 	  * @return redirect to template after successfully update of record.
 	  */
 	 @PostMapping("/template/updateSex")
@@ -207,19 +226,13 @@ public class TemplateController {
 		 sexRepository.delete(sex);
 		 return redirect;
 	 }
-	 /***
-	  * @author Josip Bošnjak
-	  * @since 26.5.2019 11:16
-	  * @param id
-	  * @param name
-	  * @param alpha_2
-	  * @param alpha_3
-	  * @return redirect if country is successfully inserted
-	  */
-	 /***
-	  * Because your controller is annotated with @SessionAttributes("user") the model will be stored in session the first time it has been created. Subsequent requests will pull the model from session.
-	  * @return
-	  */
+	 
+	/***
+	 * 
+	 * @return object
+	 * <strong>Model attribute ensures that an object will be created in
+	 * the model.</strong>
+	 */
 	 @ModelAttribute("user")
 	 public User createUser() {
 	     return new User();
@@ -245,6 +258,12 @@ public class TemplateController {
 	     return new Contact();
 	 }
 	 
+	 /***
+	  * 
+	  * @param country
+	  * @param errors
+	  * @return template form if has any errors else return redirect to template
+	  */
 	 @PostMapping("/template/insertCountry")
 	 public String insertCountry(@Valid Country country, Errors errors) {
 		if(errors.hasErrors()) {
@@ -256,10 +275,9 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 12:07
-	  * @param id
-	  * @param name
-	  * @param alpha_2
-	  * @param alpha_3
+	  * @param country
+	  * @param errors
+	  * @param model
 	  * @return redirect if country is successfully updated
 	  */
 	 @PostMapping("/template/updateCountry")
@@ -287,9 +305,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 17:54
-	  * @param name
-	  * @param zip_code
-	  * @param country_id
+	  * @param city
+	  * @param errors
 	  * @return redirect if successfuly inserted city
 	  */
 	 @PostMapping("/template/insertCity")
@@ -303,10 +320,9 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 17:54
-	  * @param id
-	  * @param name
-	  * @param zip_code
-	  * @param country_id
+	  * @param city
+	  * @param errors
+	  * @param model
 	  * @return redirect if city is successfully updated
 	  */
 	 @PostMapping("/template/updateCity")
@@ -336,9 +352,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 17:03
-	  * @param street
-	  * @param street_no
-	  * @param city_id
+	  * @param address
+	  * @param errors
 	  * @return redirect if successfully inserted data into the table
 	  */
 	 @PostMapping("/template/insertAddress")
@@ -352,10 +367,9 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 17:08
-	  * @param id
-	  * @param street
-	  * @param street_no
-	  * @param city_id
+	  * @param address
+	  * @param errors
+	  * @param model
 	  * @return redirect if update was successful
 	  */
 	 @PostMapping("/template/updateAddress")
@@ -387,12 +401,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 19:39
-	  * @param first_name
-	  * @param last_name
-	  * @param phone
-	  * @param email
-	  * @param sex_id
-	  * @param address_id
+	  * @param contact
+	  * @param errors
 	  * @return redirect if data has been successfully saved into the database
 	  */
 	 @PostMapping("/template/insertContact")
@@ -406,13 +416,9 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 19:42
-	  * @param id
-	  * @param first_name
-	  * @param last_name
-	  * @param phone
-	  * @param email
-	  * @param sex_id
-	  * @param address_id
+	  * @param contact
+	  * @param errors
+	  * @param model
 	  * @return redirect if data has been updated.
 	  */
 	 @PostMapping("/template/updateContact")
