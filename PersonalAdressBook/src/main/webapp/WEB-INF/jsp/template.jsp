@@ -30,13 +30,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" href="<c:url value="/logout" />">Logout</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Registration</a>
+          <a class="nav-link" href="<c:url value="/registration" />">Registration</a>
         </li>
 
       </ul>
