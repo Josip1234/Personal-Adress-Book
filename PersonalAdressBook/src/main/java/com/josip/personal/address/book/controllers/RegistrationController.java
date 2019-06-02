@@ -7,11 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.josip.personal.address.book.data.access.layer.UserRepository;
-import com.josip.personal.address.book.presentation.layer.Sex;
 import com.josip.personal.address.book.presentation.layer.User;
 
 @Controller
