@@ -30,8 +30,7 @@ public class User {
 	@NotBlank(message="{fields.required}")
 	@Size(min=6,max=50,message= "{password}")
 	private String password;
-	@NotBlank(message="{fields.required}")
-	@Size(min=1,max=20,message= "{role}")
+	@Nullable
 	private String role;
 	
 
