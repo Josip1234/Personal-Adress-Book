@@ -67,7 +67,7 @@ public class TemplateController {
 	
     /***
      * @author Josip Bošnjak
-     * @param sex
+     * @param sex list of sex
      * @return list of sex from data repository
      */
 	public List<Sex> findSexData(List<Sex> sex){
@@ -76,7 +76,7 @@ public class TemplateController {
 	}
 	/**
 	 * 
-	 * @param country
+	 * @param country list of countries
 	 * @return list of countries and their alpha codes from repository
 	 */
 	public List<Country> findAllCountries(List<Country> country){
@@ -86,7 +86,7 @@ public class TemplateController {
 	
 	/**
 	 * 
-	 * @param city
+	 * @param city list of cities
 	 * @return list of cities and their zip codes from repository
 	 */
 	public List<City> findAllCities(List<City> city){
@@ -125,8 +125,8 @@ public class TemplateController {
 	}
 	/***
 	 * 
-	 * @param model
-	 * @return link where registration form is
+	 * @param model holder for model attributes
+	 * @return path where registration form is
 	 */
 	@GetMapping({"/","/registration"})
 	public String getRegistrationForm(Model model) {
@@ -135,7 +135,7 @@ public class TemplateController {
 	}
 	/**
 	 * 
-	 * @param model
+	 * @param model holder for model attributes
 	 * @return user interface view
 	 */
 	 @GetMapping({"/template"})
@@ -174,6 +174,7 @@ public class TemplateController {
 	  * @author Josip Bošnjak
 	  * @since 25.5.2019 13:46
 	  * @param sex object data sent from form from view
+	  * @param errors validation for errors in form
 	  * @return redirect link to template since insertSex jsp does not exists
 	  * if model validation is valid insert record into the database 
 	  */
@@ -198,6 +199,8 @@ public class TemplateController {
 	  * @author Josip Bošnjak
 	  * @since 25.5.2019 15:00
 	  * @param sex object 
+	  * @param errors error validation for form
+	  * @param model holder for model attributtes
 	  * @return redirect to template after successfully update of record.
 	  */
 	 @PostMapping("/template/updateSex")
@@ -213,7 +216,7 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 25.5.2019 17:16
-	  * @param id 
+	  * @param id specified id what record will be deleted
 	  * @return redirect to template site after successfully deletion
 	  * <strong>Since we only need database id, we dont need a name
 	  * as parameter in the function it will delete whole record 
@@ -260,8 +263,8 @@ public class TemplateController {
 	 
 	 /***
 	  * 
-	  * @param country
-	  * @param errors
+	  * @param country object
+	  * @param errors checks if there is any errors on form
 	  * @return template form if has any errors else return redirect to template
 	  */
 	 @PostMapping("/template/insertCountry")
@@ -275,9 +278,9 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 12:07
-	  * @param country
-	  * @param errors
-	  * @param model
+	  * @param country object
+	  * @param errors form validation
+	  * @param model holder for model attributes
 	  * @return redirect if country is successfully updated
 	  */
 	 @PostMapping("/template/updateCountry")
@@ -292,7 +295,7 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 14:59
-	  * @param id
+	  * @param id specified id
 	  * @return redirect to template if successfully deleted
 	  */
 	 @PostMapping("/template/deleteCountry")
@@ -305,8 +308,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 17:54
-	  * @param city
-	  * @param errors
+	  * @param city object
+	  * @param errors form validation
 	  * @return redirect if successfuly inserted city
 	  */
 	 @PostMapping("/template/insertCity")
@@ -320,9 +323,9 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 17:54
-	  * @param city
-	  * @param errors
-	  * @param model
+	  * @param city object
+	  * @param errors form validation
+	  * @param model holder for model attributes
 	  * @return redirect if city is successfully updated
 	  */
 	 @PostMapping("/template/updateCity")
@@ -339,7 +342,7 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 17:55
-	  * @param id
+	  * @param id specified id
 	  * @return redirect to template if successfully deleted
 	  */
 	 @PostMapping("/template/deleteCity")
@@ -352,8 +355,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 17:03
-	  * @param address
-	  * @param errors
+	  * @param address object
+	  * @param errors form validation
 	  * @return redirect if successfully inserted data into the table
 	  */
 	 @PostMapping("/template/insertAddress")
@@ -367,9 +370,9 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 17:08
-	  * @param address
-	  * @param errors
-	  * @param model
+	  * @param address object
+	  * @param errors form validation
+	  * @param model holder for model attributes
 	  * @return redirect if update was successful
 	  */
 	 @PostMapping("/template/updateAddress")
@@ -388,7 +391,7 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 17:11
-	  * @param id
+	  * @param id specified id
 	  * @return redirect if successfully deleted
 	  */
 	 @PostMapping("/template/deleteAddress")
@@ -401,8 +404,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 19:39
-	  * @param contact
-	  * @param errors
+	  * @param contact object
+	  * @param errors validation for form
 	  * @return redirect if data has been successfully saved into the database
 	  */
 	 @PostMapping("/template/insertContact")
@@ -416,9 +419,9 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 19:42
-	  * @param contact
-	  * @param errors
-	  * @param model
+	  * @param contact object 
+	  * @param errors validation on form
+	  * @param model holder for model attributes
 	  * @return redirect if data has been updated.
 	  */
 	 @PostMapping("/template/updateContact")
@@ -441,7 +444,7 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 19:44
-	  * @param id
+	  * @param id specified id
 	  * @return redirect if contact has been successfuly deleted from the database.
 	  */
 	 @PostMapping("/template/deleteContact")

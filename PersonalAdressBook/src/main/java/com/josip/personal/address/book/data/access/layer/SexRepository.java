@@ -49,7 +49,7 @@ public interface SexRepository {
     /***
      * @author Josip Bošnjak
      * @since 30.5.2019 17:30
-     * @param id
+     * @param id specified id
      * @return one sex record based on id
      */
     Sex findOne(String id);

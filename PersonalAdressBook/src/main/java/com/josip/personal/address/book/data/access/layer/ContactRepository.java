@@ -17,24 +17,24 @@ public interface ContactRepository {
 Iterable<Contact> findAll();
 /***
  * 
- * @param id
+ * @param id specified contact id
  * @return contact from database based on specified id
  */
 Contact findOne(String id);
 /***
  * 
- * @param contact
+ * @param contact object
  * @return saved object
  */
 Contact save(Contact contact);
 /***
  * 
- * @param contact
+ * @param contact object
  */
 void update(Contact contact);
 /***
  * 
- * @param contact
+ * @param contact object
  */
 void delete(Contact contact);
 }

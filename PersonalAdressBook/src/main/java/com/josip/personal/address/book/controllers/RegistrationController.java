@@ -38,8 +38,8 @@ public class RegistrationController {
 
 	 /***
 	  * @author Josip Bošnjak
-	  * @param user 
-	  * @param errors
+	  * @param user object
+	  * @param errors validation if there is any error in form 
 	  * @return login if there is no errors else return form with displayed errors
 	  */
 	@PostMapping("/register/registerUser")

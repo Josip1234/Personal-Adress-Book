@@ -119,7 +119,7 @@ public class GenerateUser {
      * @author Josip Bošnjak
      * @param link location where to save data
      * @param users recieve list of users
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException if file is not found
      */
     public static void saveToMigrations(String link, List<User> users) throws FileNotFoundException {
     	PrintWriter printWriter;

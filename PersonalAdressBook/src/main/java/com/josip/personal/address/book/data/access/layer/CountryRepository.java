@@ -18,13 +18,13 @@ public interface CountryRepository {
 Iterable<Country> findAll();
 /***
  * 
- * @param id
+ * @param id specified id
  * @return one country based on specified id
  */
 Country findOne(String id);
 /***
  * 
- * @param country
+ * @param country object
  * @return country object
  */
 Country save(Country country);

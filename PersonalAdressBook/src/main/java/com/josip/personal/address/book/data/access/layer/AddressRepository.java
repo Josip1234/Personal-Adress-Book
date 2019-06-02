@@ -29,12 +29,12 @@ Address findOne(String id);
 Address save(Address address);
 /***
  * 
- * @param address 
+ * @param address object
  */
 void update(Address address);
 /***
  * 
- * @param address
+ * @param address object
  */
 void delete(Address address);
 }
