@@ -24,6 +24,7 @@ import com.josip.personal.address.book.presentation.layer.City;
 import com.josip.personal.address.book.presentation.layer.Contact;
 import com.josip.personal.address.book.presentation.layer.Country;
 import com.josip.personal.address.book.presentation.layer.Sex;
+import com.josip.personal.address.book.presentation.layer.User;
 
 /****
  * 
@@ -113,7 +114,8 @@ public class TemplateController {
 		return objectList;
 	}
 	@GetMapping({"/","/registration"})
-	public String getRegistrationForm() {
+	public String getRegistrationForm(Model model) {
+		model.addAttribute("user",new User());
 		return "registration";
 	}
 	 @GetMapping({"/template"})
@@ -218,6 +220,10 @@ public class TemplateController {
 	  * Because your controller is annotated with @SessionAttributes("user") the model will be stored in session the first time it has been created. Subsequent requests will pull the model from session.
 	  * @return
 	  */
+	 @ModelAttribute("user")
+	 public User createUser() {
+	     return new User();
+	 }
 	 @ModelAttribute("sex")
 	 public Sex createSex() {
 	     return new Sex();
