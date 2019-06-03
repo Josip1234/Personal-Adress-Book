@@ -9,25 +9,30 @@ import com.josip.personal.address.book.presentation.layer.City;
  */
 public interface CityRepository {
 	/**
-	 * 
+	 * @author Josip Bošnjak
 	 * @return list of cities
 	 */
 Iterable<City> findAll();
+/***
+ * @author Josip Bošnjak
+ * @param id -which will be used to fina a record from the database
+ * @return one city record
+ */
 City findOne(String id);
 /***
- * 
- * @param city object
- * @return city object
+ * @author Josip Bošnjak
+ * @param city -object data
+ * @return city -object data
  */
 City save(City city);
 /***
- * 
- * @param city object
+ * @author Josip Bošnjak
+ * @param city -object data
  */
 void update(City city);
 /***
- * 
- * @param city object
+ * @author Josip Bošnjak
+ * @param city -object data
  */
 void delete(City city);
 }

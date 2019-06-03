@@ -8,11 +8,14 @@ import com.josip.personal.address.book.presentation.layer.Sex;
  * @since 22.5.2019 9:02
  * @version 1.0
  * 
- * <strong>
+ * <h2>Description</h2>
+ * <p>
  * This interface will be used to store data into database.
  * It contains functions to read, write, update or delete 
- * data from database.
- * </strong>
+ * data from database. Same as the others, except registration.
+ * Registration have only one function to register new users into 
+ * the database.
+ * </p>
  *
  */
 
@@ -21,35 +24,13 @@ public interface SexRepository {
 	 * @author Josip Bošnjak
 	 * @since 22.5.2019 14:28
 	 * @return list of sex in database
-	 * 
-	 * <h2>Description</h2>
-	 * <strong>
-	 * The query() method accepts the SQL for the query as well as an implementation of Spring’s RowMapper for the purpose of mapping each row in the result set to
-        an object. findAll() also accepts as its final argument(s) a list of any parameters required in the query.
-        RowMapper parameter for both findAll() is given as a method reference to the mapRowToIngredient() method. Java 8’s
-        method references and lambdas are convenient when working with JdbcTemplate as
-        an alternative to an explicit RowMapper implementation.
-	 * </strong>
+	 *
 	 */
     Iterable<Sex> findAll();
-    /**
-     * @author Josip Bošnjak
-     * @since 22.5.2019 14:28
-     * @param sex 
-     * @return saves object into database
-     * 
-     * <h2>Description</h2>
-     * <strong>
-     * Because it is not necessary to map result set data to an object,
-     * the update() method is much simpler than query() or queryForObject().
-     * It only requires a string containing the sql to perform as well as 
-     * values to assign to any query parameters. Query has one parameter.
-     * </strong>
-     */
     /***
      * @author Josip Bošnjak
      * @since 30.5.2019 17:30
-     * @param id specified id
+     * @param id -specified id which will be used to find a record in the database.
      * @return one sex record based on id
      */
     Sex findOne(String id);
@@ -57,25 +38,14 @@ public interface SexRepository {
     /***
      * @author Josip Bošnjak
      * @since 24.5.2019. 21:10
-     * @param sex
-     * <h2>Description</h2>
-     * <strong>
-     * This function receives sex object as parameter, 
-     * and it uses jdbc update with sql query to update a record 
-     * in database.
-     * </strong>
+     * @param sex object data
+     * 
      */
     void update(Sex sex);
     /***
      * @author Josip Bošnjak
      * @since 24.5.2019. 21:12
-     * @param sex
-     * <h2>Description</h2>
-     * <strong>
-     * This function receives sex object as parameter, 
-     * and it uses jdbc update with sql query to delete a record 
-     * in database.
-     * </strong>
+     * @param sex object data
      */
     void delete(Sex sex);
 }

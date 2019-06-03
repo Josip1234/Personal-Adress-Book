@@ -15,6 +15,13 @@ public class JdbcAddressRepository implements AddressRepository {
 	public JdbcAddressRepository(JdbcTemplate jdbcTemplate) {
 		this.jdbc=jdbcTemplate;
 	}
+	/**
+	 * @author Josip Bošnjak
+	 * @param rs - cursor which points on the current row of data
+	 * @param rowNum - how many data will be returned
+	 * @return object data
+	 * @throws SQLException if connection is not available
+	 */
 	private Address mapRowToAddress(ResultSet rs, int rowNum) throws SQLException{
 		return new Address(
 				rs.getLong("id"),

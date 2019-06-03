@@ -18,6 +18,13 @@ public class JdbcCityRepository implements CityRepository {
     public JdbcCityRepository(JdbcTemplate template) {
 		this.jdbc=template;
 	}
+	/**
+	 * @author Josip Bošnjak
+	 * @param rs - cursor which points on the current row of data
+	 * @param rowNum - how many data will be returned
+	 * @return object data
+	 * @throws SQLException if connection is not available
+	 */
 	private City mapRowToCity(ResultSet rs, int rowNum) throws SQLException{
 		return new City(rs.getLong("id"),
 				rs.getString("name"),

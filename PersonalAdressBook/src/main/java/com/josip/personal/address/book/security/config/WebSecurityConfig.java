@@ -12,7 +12,22 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
+/***
+ * 
+ * @author Josip Bošnjak
+ * 
+ * <h2>Description</h2>
+ * <p>This class configures web security.
+ * It defines that a jdbc authentication will be performed, and 
+ * also it will be role based with bcrypt password encoder.
+ * Also configures http security, that means that
+ * form login will be shown, logout will be possible te have,
+ * and some post links are protected if user is not authorized,
+ * redirect to the login after logout, any request for registration 
+ * will have full access to unregistered users. Also, some paths are
+ * protected in that way just administrators have access to it.</p>
+ *
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{

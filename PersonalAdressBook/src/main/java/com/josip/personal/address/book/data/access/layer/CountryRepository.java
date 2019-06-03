@@ -12,30 +12,30 @@ import com.josip.personal.address.book.presentation.layer.Country;
 
 public interface CountryRepository {
 	/***
-	 * 
+	 * @author Josip Bošnjak
 	 * @return list of countries
  	 */
 Iterable<Country> findAll();
 /***
- * 
- * @param id specified id
+ * @author Josip Bošnjak
+ * @param id specified id which will be used to fina a record from the database
  * @return one country based on specified id
  */
 Country findOne(String id);
 /***
- * 
- * @param country object
- * @return country object
+ * @author Josip Bošnjak
+ * @param country object data
+ * @return country object data
  */
 Country save(Country country);
 /***
- * 
- * @param country object to update
+ * @author Josip Bošnjak
+ * @param country object data
  */
 void update(Country country);
 /***
- * 
- * @param country object to delete
+ * @author Josip Bošnjak
+ * @param country object data
  */
 void delete(Country country);
 }

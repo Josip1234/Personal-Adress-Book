@@ -14,6 +14,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.github.javafaker.Faker;
 import com.josip.personal.address.book.presentation.layer.User;
 
+/***
+ * 
+ * @author Josip Bošnjak
+ * 
+ *<h2>Description</h2>
+ *<p>This class generates fake data based on faker library 
+ *also there are some arrays like roles and email which will be created by random 
+ *values from the faker library. Also, data will be saved before 
+ *password encryption, because this is a class which will be used to generate test data 
+ *not the real data. Data will be stored in users.json in json format.
+ *Then, the test data will be saved in migration file. Migration file will
+ *save data to the database. Of course, if there was already current version of
+ *file, that version needs to be changed. There is a chance that file is already
+ *executed, so we need a new version with more data.</p>
+ */
 public class GenerateUser {
 	
 	static String[] roles=new String[] {"ADMIN","USER"};
@@ -118,7 +133,7 @@ public class GenerateUser {
     /**
      * @author Josip Bošnjak
      * @param link location where to save data
-     * @param users recieve list of users
+     * @param users receive list of users
      * @throws FileNotFoundException if file is not found
      */
     public static void saveToMigrations(String link, List<User> users) throws FileNotFoundException {

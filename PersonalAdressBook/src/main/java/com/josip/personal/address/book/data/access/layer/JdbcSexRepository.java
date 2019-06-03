@@ -15,7 +15,8 @@ import com.josip.personal.address.book.presentation.layer.Sex;
  * @version 1.0
  * @since 22.5.2019 9:07
  * 
- * <strong>
+ * <h2>Description</h2>
+ * <p>
  * This class implements sex repository interface functions.
  * It will inject jdbc template and it is annotated as repository.
  * It means that this will automatically be discovered by spring component 
@@ -23,9 +24,11 @@ import com.josip.personal.address.book.presentation.layer.Sex;
  * When bean is being created, it inject it with jdbc template via @Autowired  
  * annotated constructor. This constructor assigns jdbc template to be
  * an instance variable that will be used in ther methods to query and to 
- * insert into database.
+ * insert into database. It is the same for the other repositories, except
+ * for registration. In registration we dont have select so maprows does not
+ * exist.
  * 
- *  </strong>
+ *  </p>
  *
  */
 @Repository
@@ -45,6 +48,13 @@ public class JdbcSexRepository implements SexRepository {
   		
 	}
 
+	/**
+	 * @author Josip Bošnjak
+	 * @param rs - cursor which points on the current row of data
+	 * @param rowNum - how many data will be returned
+	 * @return object data
+	 * @throws SQLException if connection is not available
+	 */
 	private Sex mapRowToSex(ResultSet rs, int rowNum) throws SQLException{
 		return new Sex(rs.getLong("id"),
 				rs.getString("name"));

@@ -31,18 +31,16 @@ import com.josip.personal.address.book.presentation.layer.User;
  * @author Josip Bošnjak
  * @since 24.5.2019 14:10
  * @version 1.0
- * <h2>Description</h2>
- * <strong>
- * This class receive request and send requests.
- * Data is sent to user view by repository.
- * First, list is generated and repository is used to 
- * receive data from database. 
- * Then, lambda expression is used to add data to the list.
- * List is added to the model then, which controller will
- * pass to the web site. User will see that data at the 
- * site.
  * 
- * </strong>
+ * <h2>Description</h2>
+ * <p>
+ * This class receives data from post request sent by view.
+ * Data is being process here, first validation. 
+ * If everything is ok, data will be saved, deleted or updated
+ * in the database. If there is any error, controller redirects 
+ * to the view where the form is and shows error near the field 
+ * where error is.
+ * </p>
  */
 @Controller
 public class TemplateController {
@@ -55,7 +53,14 @@ public class TemplateController {
 	private final String redirect="redirect:/template";
 	private final String template="/template";
 	
-	
+	/***
+	 * @author Josip Bošnjak
+	 * @param sexRepository - repository injection
+	 * @param country - repository injection
+	 * @param cityRepository - repository injection
+	 * @param addressRepository - repository injection
+	 * @param contactRepository - repository injection
+	 */
 	@Autowired
 	public TemplateController(SexRepository sexRepository, CountryRepository country, CityRepository cityRepository, AddressRepository addressRepository, ContactRepository contactRepository) {
 		this.sexRepository=sexRepository;
@@ -75,7 +80,7 @@ public class TemplateController {
         return sex;
 	}
 	/**
-	 * 
+	 * @author Josip Bošnjak
 	 * @param country list of countries
 	 * @return list of countries and their alpha codes from repository
 	 */
@@ -85,14 +90,19 @@ public class TemplateController {
 	}
 	
 	/**
-	 * 
+	 * @author Josip Bošnjak
 	 * @param city list of cities
-	 * @return list of cities and their zip codes from repository
+	 * @return list of cities and their zip_codes from repository
 	 */
 	public List<City> findAllCities(List<City> city){
 		cityRepository.findAll().forEach(cit->city.add(cit));
 		return city;
 	}
+	/**
+	 * @author Josip Bošnjak
+	 * @param address -receives address list as parameter
+	 * @return data populated list from database
+	 */
 	public List<Address> findAllTheAddress(List<Address> address){
 		addressRepository.findAll().forEach(adr->address.add(adr));
 		return address;
@@ -103,10 +113,12 @@ public class TemplateController {
 	 * @param o any object of any class
 	 * @param id id for finding a record in database
 	 * @return list if there is a instance classes
-	 * <strong>Since when we are updating values, there is no values to
+	 * 
+	 * <h2>Description</h2>
+	 * <p>Since when we are updating values, there is no values to
 	 * update when user click update and then there in no entry in new name.
 	 * This function receives an object, which is instance one of our 5
-	 * classes, and then returning a list which will be added to the model.</strong> 
+	 * classes, and then returning a list which will be added to the model.</p> 
 	 */
 	public List<Object> addToList(Object o, String id){
 		List<Object> objectList = new ArrayList<>();
@@ -124,7 +136,7 @@ public class TemplateController {
 		return objectList;
 	}
 	/***
-	 * 
+	 * @author Josip Bošnjak
 	 * @param model holder for model attributes
 	 * @return path where registration form is
 	 */
@@ -134,7 +146,7 @@ public class TemplateController {
 		return "registration";
 	}
 	/**
-	 * 
+	 * @author Josip Bošnjak
 	 * @param model holder for model attributes
 	 * @return user interface view
 	 */
@@ -173,10 +185,13 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 25.5.2019 13:46
-	  * @param sex object data sent from form from view
+	  * @param sex object data sent from the from view
 	  * @param errors validation for errors in form
 	  * @return redirect link to template since insertSex jsp does not exists
+	  * 
+	  * <strong>
 	  * if model validation is valid insert record into the database 
+	  * </strong>
 	  */
 	 @PostMapping("/template/insertSex")
 	 public String insertSex(@Valid Sex sex,Errors errors) {
@@ -216,9 +231,10 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 25.5.2019 17:16
-	  * @param id specified id what record will be deleted
+	  * @param id -specified id what record will be deleted
 	  * @return redirect to template site after successfully deletion
-	  * <strong>Since we only need database id, we dont need a name
+	  * 
+	  * <strong>Since we only need database id, we don't need a name
 	  * as parameter in the function it will delete whole record 
 	  * without name provided.</strong>
 	  */
@@ -231,8 +247,8 @@ public class TemplateController {
 	 }
 	 
 	/***
-	 * 
-	 * @return object
+	 * @author Josip Bošnjak
+	 * @return object which will be used t generate forms
 	 * <strong>Model attribute ensures that an object will be created in
 	 * the model.</strong>
 	 */
@@ -262,8 +278,8 @@ public class TemplateController {
 	 }
 	 
 	 /***
-	  * 
-	  * @param country object
+	  * @author Josip Bošnjak
+	  * @param country object data received from the form view
 	  * @param errors checks if there is any errors on form
 	  * @return template form if has any errors else return redirect to template
 	  */
@@ -278,7 +294,7 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 12:07
-	  * @param country object
+	  * @param country object received from the form view
 	  * @param errors form validation
 	  * @param model holder for model attributes
 	  * @return redirect if country is successfully updated
@@ -295,7 +311,7 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 14:59
-	  * @param id specified id
+	  * @param id specified id which will be used to delete specified recond in database
 	  * @return redirect to template if successfully deleted
 	  */
 	 @PostMapping("/template/deleteCountry")
@@ -308,9 +324,9 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 17:54
-	  * @param city object
-	  * @param errors form validation
-	  * @return redirect if successfuly inserted city
+	  * @param city -object data received from the form view
+	  * @param errors -check if there is any error oin the form
+	  * @return redirect -template if form doesn't have any errors and data is saved into database 
 	  */
 	 @PostMapping("/template/insertCity")
 	 public String insertCity(@Valid City city,Errors errors) {
@@ -323,8 +339,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 17:54
-	  * @param city object
-	  * @param errors form validation
+	  * @param city -object data sent from the form view
+	  * @param errors -checks if there is any errors in the form
 	  * @param model holder for model attributes
 	  * @return redirect if city is successfully updated
 	  */
@@ -342,7 +358,7 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 26.5.2019 17:55
-	  * @param id specified id
+	  * @param id specified id to delete a record in the database
 	  * @return redirect to template if successfully deleted
 	  */
 	 @PostMapping("/template/deleteCity")
@@ -355,8 +371,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 17:03
-	  * @param address object
-	  * @param errors form validation
+	  * @param address -object data received from the form view
+	  * @param errors -checks if there is any errors in the form view
 	  * @return redirect if successfully inserted data into the table
 	  */
 	 @PostMapping("/template/insertAddress")
@@ -370,8 +386,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 17:08
-	  * @param address object
-	  * @param errors form validation
+	  * @param address -object data received from the form view
+	  * @param errors -checks if there is any errors in form 
 	  * @param model holder for model attributes
 	  * @return redirect if update was successful
 	  */
@@ -391,7 +407,7 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 17:11
-	  * @param id specified id
+	  * @param id -specified id which will be used to delete specified record in the database
 	  * @return redirect if successfully deleted
 	  */
 	 @PostMapping("/template/deleteAddress")
@@ -404,8 +420,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 19:39
-	  * @param contact object
-	  * @param errors validation for form
+	  * @param contact -object data received from the form view
+	  * @param errors -checks if there is any errors in the form
 	  * @return redirect if data has been successfully saved into the database
 	  */
 	 @PostMapping("/template/insertContact")
@@ -419,8 +435,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 19:42
-	  * @param contact object 
-	  * @param errors validation on form
+	  * @param contact -object data received from the form view  
+	  * @param errors -checks if there is any errors in the form
 	  * @param model holder for model attributes
 	  * @return redirect if data has been updated.
 	  */
@@ -444,8 +460,8 @@ public class TemplateController {
 	 /***
 	  * @author Josip Bošnjak
 	  * @since 27.5.2019 19:44
-	  * @param id specified id
-	  * @return redirect if contact has been successfuly deleted from the database.
+	  * @param id -specified id which will be used to delete specified record in the database
+	  * @return redirect if contact has been successfully deleted from the database.
 	  */
 	 @PostMapping("/template/deleteContact")
 	 public String deleteContact(@RequestParam("id")Long id) {

@@ -11,7 +11,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.josip.personal.address.book.data.access.layer.UserRepository;
 import com.josip.personal.address.book.presentation.layer.User;
-
+/***
+ * 
+ * @author Josip Bošnjak
+ * 
+ * <h2>Description</h2>
+ * <p>This class receives user data from registration form,
+ * as post request, then it sends response if there is any errors
+ * to the view at the view that errors shows up near the field
+ * with the error.</p>
+ *
+ */
 @Controller
 public class RegistrationController {
 	private UserRepository userRepository;
@@ -38,8 +48,8 @@ public class RegistrationController {
 
 	 /***
 	  * @author Josip Bošnjak
-	  * @param user object
-	  * @param errors validation if there is any error in form 
+	  * @param user - receive user data from form from registration view
+	  * @param errors checks if there is any errors in form 
 	  * @return login if there is no errors else return form with displayed errors
 	  */
 	@PostMapping("/register/registerUser")
