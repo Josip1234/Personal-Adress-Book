@@ -1,12 +1,12 @@
 CREATE TABLE contact
 (
-    id serial NOT NULL,
+    id bigserial NOT NULL,
     first_name varchar(20) NOT NULL,
     last_name varchar(50) NOT NULL,
     phone varchar(13) NOT NULL,
     email varchar(50) NOT NULL,
-    sex_id bigint UNSIGNED NOT NULL,
-    address_id bigint UNSIGNED NOT NULL,
+    sex_id bigint NOT NULL,
+    address_id bigint NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_sex FOREIGN KEY (sex_id)
         REFERENCES sex (id) MATCH SIMPLE

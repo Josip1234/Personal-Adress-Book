@@ -1,6 +1,6 @@
 CREATE TABLE country
 (
-    id serial NOT NULL,
+    id bigserial NOT NULL,
     name varchar(50) NOT NULL,
     alpha_2 varchar(2),
     alpha_3 varchar(3),

@@ -1,6 +1,6 @@
 CREATE TABLE users
 (
-    id serial NOT NULL,
+    id bigserial NOT NULL,
     firstName varchar(20) NOT NULL,
     lastName varchar(50) NOT NULL,
     age integer,
