@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.josip.personal.address.book.presentation.layer.Address;
 @Repository
 public class JdbcAddressRepository implements AddressRepository {
-
+     //jdbc template is built in java managed core package. It simplifies use of database.
 	private JdbcTemplate jdbc;
 	
 	public JdbcAddressRepository(JdbcTemplate jdbcTemplate) {
