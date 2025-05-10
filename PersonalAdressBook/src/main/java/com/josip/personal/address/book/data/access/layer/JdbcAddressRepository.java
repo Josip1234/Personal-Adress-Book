@@ -1,5 +1,7 @@
 package com.josip.personal.address.book.data.access.layer;
 
+
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
