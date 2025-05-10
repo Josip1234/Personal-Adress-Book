@@ -3,7 +3,6 @@ package com.josip.personal.address.book.data.access.layer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,6 @@ import com.josip.personal.address.book.presentation.layer.Country;
 public class JdbcCountryRepository implements CountryRepository {
 	private JdbcTemplate jdbc;
 
-	@Autowired
 	public JdbcCountryRepository(JdbcTemplate jdbcTemplate) {
 		this.jdbc=jdbcTemplate;
 	}

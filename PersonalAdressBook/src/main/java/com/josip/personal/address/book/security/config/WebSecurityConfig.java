@@ -4,6 +4,8 @@ package com.josip.personal.address.book.security.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -33,7 +35,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	DataSource dataSource;
-	@Override
+	/*~~(Migrate manually based on https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter)~~>*/@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 		auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery(
 				"SELECT email, password, true FROM users WHERE email=?").passwordEncoder(new BCryptPasswordEncoder()).authoritiesByUsernameQuery(
@@ -42,10 +44,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-		http.formLogin().defaultSuccessUrl("/template").and().logout().logoutSuccessUrl("/login").and().rememberMe().and().authorizeRequests().antMatchers("/template").access("hasAnyAuthority('USER','ADMIN')")
-		.antMatchers(HttpMethod.POST,"/template/insertSex","/template/insertCountry","/template/insertCity","/template/insertAddress","/template/updateAddress","/template/deleteAddress","/template/insertContact","/template/updateContact","/template/deleteContact").access("hasAnyAuthority('USER','ADMIN')")
-		.antMatchers(HttpMethod.POST,"/template/updateSex","/template/deleteSex","/template/updateCountry","/template/deleteCountry","/template/updateCity","/template/deleteCity").access("hasAuthority('ADMIN')")
-		.anyRequest().permitAll();
+        http.formLogin(login -> login.defaultSuccessUrl("/template")).logout(logout -> logout.logoutSuccessUrl("/login")).rememberMe(withDefaults()).authorizeRequests(requests -> requests.requestMatchers("/template").access("hasAnyAuthority('USER','ADMIN')")
+                .requestMatchers(HttpMethod.POST, "/template/insertSex", "/template/insertCountry", "/template/insertCity", "/template/insertAddress", "/template/updateAddress", "/template/deleteAddress", "/template/insertContact", "/template/updateContact", "/template/deleteContact").access("hasAnyAuthority('USER','ADMIN')")
+                .requestMatchers(HttpMethod.POST, "/template/updateSex", "/template/deleteSex", "/template/updateCountry", "/template/deleteCountry", "/template/updateCity", "/template/deleteCity").access("hasAuthority('ADMIN')")
+                .anyRequest().permitAll());
 		
 	}
 	

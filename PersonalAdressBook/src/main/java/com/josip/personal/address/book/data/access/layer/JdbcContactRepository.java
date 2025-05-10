@@ -3,7 +3,6 @@ package com.josip.personal.address.book.data.access.layer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +13,6 @@ public class JdbcContactRepository implements ContactRepository{
 	
 	private JdbcTemplate jdbc;
 	
-	@Autowired
 	public JdbcContactRepository(JdbcTemplate template) {
 		this.jdbc=template;
 	}

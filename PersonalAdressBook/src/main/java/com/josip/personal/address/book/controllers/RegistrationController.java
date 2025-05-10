@@ -1,8 +1,7 @@
 package com.josip.personal.address.book.controllers;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -30,17 +29,16 @@ public class RegistrationController {
 	 * @author Josip Bošnjak
 	 * @param userRepository repository which saves user data to the database
 	 */
-	@Autowired
 	public RegistrationController(UserRepository userRepository) {
 		this.userRepository=userRepository;
 	}
-	
-	/***
-	 * 
-	 * @return Bycript encrypted password
-	 */
-	 @Bean
-	  public BCryptPasswordEncoder passwordEncoder() {
+
+    /***
+     * 
+     * @return Bycript encrypted password
+     */
+     @Bean
+    BCryptPasswordEncoder passwordEncoder() {
 	  return new BCryptPasswordEncoder();
 	  }
 	 

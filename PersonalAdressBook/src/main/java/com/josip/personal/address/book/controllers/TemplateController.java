@@ -3,9 +3,8 @@ package com.josip.personal.address.book.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -61,7 +60,6 @@ public class TemplateController {
 	 * @param addressRepository - repository injection
 	 * @param contactRepository - repository injection
 	 */
-	@Autowired
 	public TemplateController(SexRepository sexRepository, CountryRepository country, CityRepository cityRepository, AddressRepository addressRepository, ContactRepository contactRepository) {
 		this.sexRepository=sexRepository;
 		this.countries=country;
@@ -239,7 +237,7 @@ public class TemplateController {
 	  * without name provided.</strong>
 	  */
 	 @PostMapping("/template/deleteSex")
-	 public String deleteSex(@RequestParam("id")Long id) {
+	 public String deleteSex(@RequestParam Long id) {
 		 Sex sex=new Sex();
 		 sex.setId(id);
 		 sexRepository.delete(sex);
@@ -315,7 +313,7 @@ public class TemplateController {
 	  * @return redirect to template if successfully deleted
 	  */
 	 @PostMapping("/template/deleteCountry")
-	 public String deleteCountry(@RequestParam("id") Long id) {
+	 public String deleteCountry(@RequestParam Long id) {
 		 Country country=new Country();
 		 country.setId(id);
 		 countries.delete(country);
@@ -362,7 +360,7 @@ public class TemplateController {
 	  * @return redirect to template if successfully deleted
 	  */
 	 @PostMapping("/template/deleteCity")
-	 public String deleteCity(@RequestParam("id")Long id){
+	 public String deleteCity(@RequestParam Long id){
 		 City city=new City();
 		 city.setId(id);
 		 cityRepository.delete(city);
@@ -411,7 +409,7 @@ public class TemplateController {
 	  * @return redirect if successfully deleted
 	  */
 	 @PostMapping("/template/deleteAddress")
-	 public String deleteAddress(@RequestParam("id")Long id) {
+	 public String deleteAddress(@RequestParam Long id) {
 		 Address address = new Address();
 		 address.setId(id);
 		 addressRepository.delete(address);
@@ -464,7 +462,7 @@ public class TemplateController {
 	  * @return redirect if contact has been successfully deleted from the database.
 	  */
 	 @PostMapping("/template/deleteContact")
-	 public String deleteContact(@RequestParam("id")Long id) {
+	 public String deleteContact(@RequestParam Long id) {
 		 Contact contact=new Contact();
 		 contact.setId(id);
 		 contactRepository.delete(contact);

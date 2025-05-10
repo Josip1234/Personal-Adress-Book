@@ -3,7 +3,6 @@ package com.josip.personal.address.book.data.access.layer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -36,7 +35,6 @@ public class JdbcSexRepository implements SexRepository {
 
 	private JdbcTemplate jdbc;
 	
-	@Autowired
 	public JdbcSexRepository(JdbcTemplate jdbc) {
 		this.jdbc=jdbc;
 	}

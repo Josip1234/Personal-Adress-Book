@@ -1,6 +1,5 @@
 package com.josip.personal.address.book.data.access.layer;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +9,6 @@ import com.josip.personal.address.book.presentation.layer.User;
 public class JdbcUserRepository implements UserRepository {
     private JdbcTemplate jdbcTemplate;
     
-    @Autowired
     public JdbcUserRepository(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate=jdbcTemplate;
 	}
